@@ -1,0 +1,33 @@
+\documentclass{article}
+\input{preamble}
+\begin{document}
+
+% Front matter
+\maketitle
+\begin{center}
+	\vspace{1cm}
+	\includegraphics[scale=0.2]{dtulogo}\\
+	\LARGE
+	Danmarks Tekniske Universitet\\
+\end{center}
+\newpage
+
+% Abstract
+
+\begin{abstract}
+    Abstract here
+\end{abstract}
+\newpage
+
+% TOC
+\tableofcontents
+\newpage
+
+% Sections
+\subimport{introduction/}{introduction.tex}
+\subimport{analysis/}{analysis.tex}
+
+% Backmatter (Bilbiography, figurelist, tablelist)
+\BackMatter
+
+\end{document}
