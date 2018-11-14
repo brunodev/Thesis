@@ -22,6 +22,12 @@
   \def\relativepath{\import@path}
 \makeatother
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Graphics
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{graphicx}
+\graphicspath{{\relativepath./figures/}}
+
 % The `standalone' package
 % For ignoring document class, begin-document and end-document in sub files
 \usepackage{standalone}
@@ -47,10 +53,11 @@
 
 \pagestyle{fancy}
 \fancyhf{}
-\lhead{\large Cyber defense og ledelsesansvar}
+% \lhead{\large Exploiting known vulnerabilities, misconfigurations and weaknesses in native protocols to compromise Windows Active Directory Domains with a focus on traceability and ease of use.}
+
 \rhead{\includegraphics[scale=0.03]{dtulogo}}
 \cfoot{Page \thepage \ of \pageref{LastPage}}
-\title{\Huge Cyber defense og ledelsesansvar}
+\title{\LARGE Exploiting known vulnerabilities, misconfigurations and weaknesses in native protocols to compromise Windows Active Directory Domains with a focus on traceability and ease of use.}
 \author{Søren Fritzbøger - s153753\\
 Vejledt af Henrik Tange\\
 }

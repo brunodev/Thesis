@@ -7,7 +7,7 @@
 * Report structure
 ### Exploitation of Active Directory Domains
 
-## Credential stealing
+## Credential gathering
 ### Spoofing
 #### NBNS/NetBIOS
 #### LLMNR
@@ -22,7 +22,7 @@
 #### Hosts
 #### BloodHound
 
-## Attack methodologies
+## Attack methods
 ### Secretsdump / impacket
 
 ## Implementation
