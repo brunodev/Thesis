@@ -1,0 +1,32 @@
+\documentclass{article}
+\usepackage{import}
+\subimport{../../}{preamble.tex}
+\standalonetrue
+\begin{document}
+
+% sample content
+\subsubsection{SMB}
+\begin{figure}
+	\centering
+	\begin{sequencediagram}
+        \newthread{client}{Client}
+        % \newinst[5]{server}{Server}
+        \newthread[gray!30][5]{server}{Server}
+        % \newthread[5]{server}{Server}
+
+        \mess[1]{client}{SMB Negotiate request}{server}
+        \mess[1]{server}{SMB Negotiate response}{client}
+
+        \mess[1]{client}{NTLM Negotiate}{server}
+        \mess[1]{server}{NTLM Challenge}{client}
+
+        \mess[1]{client}{NTLM Authenticate}{server}
+        \mess[1]{server}{Success}{client}
+    \end{sequencediagram}
+    \label{fig:smb-ntlm-authentication}
+    \caption{SMB NTLM authentication\cite{url:smb-ntlm-authentication}}
+\end{figure}
+
+%\subimport{}{problem.tex}
+
+\end{document}

@@ -15,7 +15,7 @@
 % Abstract
 
 \begin{abstract}
-    Abstract here
+	Abstract here
 \end{abstract}
 \newpage
 
@@ -23,9 +23,14 @@
 \tableofcontents
 \newpage
 
+% Abbreviations
+\printglossary[type=\acronymtype,title=Abbreviations]
+\newpage
+
 % Sections
+
 \subimport{introduction/}{introduction.tex}
-\subimport{credential-gathering/}{credential-gathering.tex}
+\subimport{initial-foothold/}{initial-foothold.tex}
 \subimport{attack-methods/}{attack-methods.tex}
 \subimport{reconnaissance/}{reconnaissance.tex}
 \subimport{implementation/}{implementation.tex}
@@ -33,6 +38,6 @@
 \subimport{conclusion/}{conclusion.tex}
 
 % Backmatter (Bilbiography, figurelist, tablelist)
-\BackMatter
+\subimport{}{backmatter.tex}
 
 \end{document}

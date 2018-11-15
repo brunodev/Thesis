@@ -13,4 +13,4 @@ Windows Active Directory Domain compromise using known vulnerabilities, misconfi
 
 Exploiting known vulnerabilities, misconfigurations and weaknesses in native protocols to compromise Windows Active Directory Domains with a focus on traceability and ease of use.
 
-Udnyttelse af kendte sårbaheder, fejlkonfigurationer og svagheder i indbyggede protokoller til at kompromittere Windows Active Directory Domæner med fokus på sporbarhed og brugervenlighed
+Udnyttelse af kendte sårbarheder, fejlkonfigurationer og svagheder i indbyggede protokoller til at kompromittere Windows Active Directory Domæner med fokus på sporbarhed og brugervenlighed

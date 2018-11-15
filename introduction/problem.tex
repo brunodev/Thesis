@@ -1,8 +1,31 @@
-
 \documentclass{article}
     \usepackage{import}
     \subimport{../}{preamble.tex}
     \standalonetrue
 \begin{document}
-\subsection{Problem definition}
+\subsection{Problem background}
+When performing a pentest on Windows Active Directory environments, one of the goals is usually to obtain Domain Administrator privileges, usually in the form of a Domain Admin account. There are numerous ways to gain initial foothold in an Active Directory Domain, but the most common one is by exploiting the native protocols \gls{nbns} and \gls{llmnr}\cite{url:zero-to-domain-admin} to gain crackable hashes which can be bruteforced offline. Hereafter a number of different techniques and exploits can be used to gain additional credentials, but it usually consists of dumping cached credentials on domain joined hosts in one way or another.
+\\
+As one can easily figure out this is usually a manual job where many different tools are joined together to produce the right result. This usually means it is a trivial and easy job, which requires a lot of time that can be spent on more advanced tasks. This is often done with tools not written by the pentester themselves, which can pose a security risk as the tools can be backdoored or otherwise have security vulnerabilities.
+\\
+One of the objectives of a pentest is usually to be as silent as possible and not trigger any alerts in any \gls{ids}, \gls{siem} or similar systems. The risk of using publicly available tools is therefore also that the tools are highly likely to be detected by \gls{av} and will often trigger unwanted alerts.
+\\
+Another issue of performing pentests is to document and remember the order of tasks that where done. A pentest usually concludes with a report where the necessary steps are explained to the customer, and this includes in what order tasks were done and which user credentials were used.
+
+\subsection{Problem brief}
+The purpose of this project is to determine whether a proper solution to the aforementioned problem can be found, and to analyze how such a tool can be developed. The problem is split in two, where the first goal is to gain an initial foothold and the second is to gain Domain Administrator privileges. To accomplish this the many techniques and methods will be discussed and evaluated in comparison to each other, and the most valid solution will be implemented in a piece of software that aims to be easy to use and contain a high level of traceability.
+\\
+The developed piece of software must be able to be easy to use so that an incentive to use it instead of other tools is created. It should be constructed with AV evasion in mind, such that it will not be detected by AVs. Furthermore it must be designed with traceability in mind, such that a clear timeline can be constructed and documented.
+% The purpose of this project is analyze, discuss and implement a solution to the aforementioned problem.
+
+% The project will go over the most common ways to gain initial foothold of a Windows Active Directory Domain, and how native protocols can be abused to gather credentials.
+
+
+
+% The purpose of this project is to show how known vulnerabilities, misconfigurations and weaknesses in native protocols in Windows can be used to compromise an entire Windows Active Directory Domain. To fully understand how this can be achieved the following report will unveil the primary techniques used to compromise a domain. In most cases compromisation of Windows AD Domains requires valid user credentials to gain an initial foothold. These credentials will then be used to pivot between hosts and ultimately lead to a Domain Administrator account.
+% Most of the techniques analyzed in this project are well known and abused in the wild already. However, the goal of this project is to determine whether or not the methods and techniques can be combined in a single easy to use piece of software to fully compromise a Windows Active Directory Domain.
+% \\This project will analyze and exploit numerous ways to gather domain credentials without already having a foothold in the domain. Using the initial foothold, popular attack methods and techniques will be discussed and evaluated in order to show how they can be combined to gain full administrative control over the entire Active Directory Domain.
+% \\
+% There is numerous ways to achieve an user including phishing, password spraying or simply bruteforcing.
+% Windows has a long history of backwards compatibility \footnote{https://rasteri.blogspot.com/2011/03/chain-of-fools-upgrading-through-every.html https://news.ycombinator.com/item?id=13450160} which has led to 
 \end{document}

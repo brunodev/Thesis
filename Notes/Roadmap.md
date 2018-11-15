@@ -6,6 +6,7 @@
     * ~~Add initialize function to fetch initial data~~
 * ~~Data encryption~~
 * ~~Test the background service~~
+* Encryption key
 * Improve SMB server so it doesn't crash when there is no DC
 * Settings file
 * Add export functions

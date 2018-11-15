@@ -27,12 +27,24 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{graphicx}
 \graphicspath{{\relativepath./figures/}}
+\usepackage{pgf-umlsd}
+
+% new command for adding a distance option for threads as well
+% \newthread[color][distance]{id}{title}
+\usepackage{xargs}
+\renewcommandx{\newthread}[4][1=gray!30, 2=0.2]{
+  \newinst[#2]{#3}{#4}
+  \stepcounter{threadnum}
+  \node[below of=inst\theinstnum,node distance=0.8cm] (thread\thethreadnum) {};
+  \tikzstyle{threadcolor\thethreadnum}=[fill=#1]
+  \tikzstyle{instcolor#3}=[fill=#1]
+}
 
 % The `standalone' package
 % For ignoring document class, begin-document and end-document in sub files
 \usepackage{standalone}
 
-
+  
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -42,6 +54,13 @@
 \usepackage{bookmark}
 \usepackage[backend=biber]{biblatex}
 \addbibresource{\relativepath./literature/Litterature.bib}
+
+% Abbreviations
+\usepackage{longtable}
+\usepackage[acronym,toc]{glossaries}
+\makeglossaries
+
+\loadglsentries{abbreviations}
 
 
 
@@ -55,7 +74,7 @@
 \fancyhf{}
 % \lhead{\large Exploiting known vulnerabilities, misconfigurations and weaknesses in native protocols to compromise Windows Active Directory Domains with a focus on traceability and ease of use.}
 
-\rhead{\includegraphics[scale=0.03]{dtulogo}}
+% \rhead{\includegraphics[scale=0.03]{dtulogo}}
 \cfoot{Page \thepage \ of \pageref{LastPage}}
 \title{\LARGE Exploiting known vulnerabilities, misconfigurations and weaknesses in native protocols to compromise Windows Active Directory Domains with a focus on traceability and ease of use.}
 \author{Søren Fritzbøger - s153753\\
@@ -107,7 +126,6 @@ Vejledt af Henrik Tange\\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \usepackage{ltablex}
-\usepackage{longtable}
 \usepackage{makecell}
 \usepackage{multirow}
 \usepackage{afterpage}

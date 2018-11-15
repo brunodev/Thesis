@@ -6,6 +6,20 @@
 
 % sample content
 \section{Implementation}
+\begin{figure}
+	\centering
+	\begin{sequencediagram}
+		\newthread{A}{Controller}{}
+        \newinst[1]{B}{Worker}{}
+        \newinst[1]{C}{Third party program}{}
+		\begin{call}{A}{Call()}{B}{}
+            \begin{call}{B}{Call()}{C}{}
+            \end{call}
+        \end{call}
+    \end{sequencediagram}
+    \label{fig:test-figure}
+    \caption{Test figure}
+\end{figure}
 \subimport{technologies/}{technologies.tex}
 \subimport{considerations/}{considerations.tex}
 \subimport{storage/}{storage.tex}

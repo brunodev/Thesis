@@ -6,3 +6,6 @@ Background tasks with hosted services in ASP.NET Core
 
 # LDAP
 * How to listen to LDAP notifications https://msdn.microsoft.com/en-us/library/bb332056.aspx#sdspintro_topic5_asynch
+
+# Latex
+* Sequence diagrams https://mirror.hmc.edu/ctan/graphics/pgf/contrib/pgf-umlsd/pgf-umlsd-manual.pdf
