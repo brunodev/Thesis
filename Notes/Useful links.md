@@ -9,3 +9,7 @@ Background tasks with hosted services in ASP.NET Core
 
 # Latex
 * Sequence diagrams https://mirror.hmc.edu/ctan/graphics/pgf/contrib/pgf-umlsd/pgf-umlsd-manual.pdf
+
+# NTLM
+* HTTP NTLM https://www.innovation.ch/personal/ronald/ntlm.html
+* SMB NTLM https://msdn.microsoft.com/en-us/library/cc669093.aspx

@@ -6,6 +6,69 @@
 
 % sample content
 \section{Initial foothold}
+In a Windows Active Directory Domain there are numerous ways of gaining an initial foothold. The following methods are the most used in modern penetration testing of Windows AD environments.
+\begin{description}
+	\item[BRUTE] User credential bruteforcing
+	\item[SPRAY] Password spraying
+	\item[EXPL]Exploiting known vulnerabilities on unpatched systems
+	\item[CLEAR] Clear text passwords stored on public shares
+	\item[SPOOF] \gls{nbns} and/or \gls{llmnr} spoofing
+\end{description}
+
+All of the above mentioned methods have their weaknesses and strengths, which should be taken into account when choosing the best method or methods to gain initial foothold in the domain. To make an educated guess of which method(s) to pursue further a comparison between the different methods is needed. Table \ref{tab:initial-foothold-comparison} gives a comparison of the different methods, and shows which weaknesses and strengths each methods possess.
+
+    {\setlength\LTleft{-0.25\textwidth}%
+		\begin{tabularx}{1.5\textwidth}{X|c|c|c|c|c}
+			\textbf{Strength} & \textbf{BRUTE} & \textbf{SPRAY} & \textbf{EXPL} & \textbf{CLEAR} & \textbf{SPOOF} \\\hline
+            \textbf{Is it automatable?} & + & + & - & - & + \\
+            \textbf{Is it fast?} & - & - & + & - & - \\
+            \textbf{Account lockout issues?\cite{url:account-lockout-policy}} & - & - & + & + & + \\
+            \textbf{Communication with critical systems such as a \gls{dc}?} & - & - & + & + & + \\
+            \textbf{Easy to detect?} & - & - & + & + & + \\
+            \textbf{Is it easy to do?} & + & + & - & (+)\footnote{This can easily be done by humans, but may be hard to program} & + \\\hline
+            \textbf{Points} & 2 & 2 & 4 & 3.5 & 5 \\ 
+            \caption{Comparison of different methods to gain initial foothold in a Windows AD environment}
+			\label{tab:initial-foothold-comparison}
+		\end{tabularx}
+	}
+% {\setlength\LTleft{-0.25\textwidth}%
+% 	\begin{tabularx}{1.5\textwidth}{l|X|l}
+% 		\textbf{Method}                & \textbf{Strengths} & \textbf{Weaknesses}        \\\hline
+% 		\textbf{Bruteforcing}          & \makecell[tX]
+% 		{
+% 			Easy to automate
+% 		}                              & \makecell[tX]
+% 		{
+% 			Need to know a valid username                                                    \\
+% 			Has to be done against an authorization service such as a \gls{dc} or \gls{o365} \\
+% 			Slow                                                                             \\
+% 			Noisy                                                                            \\
+% 			May lock accounts\cite{url:account-lockout-policy}
+% 		}                                                                                \\
+% 		\textbf{Password spraying}     & \makecell[tX]
+% 		{
+% 			Easy to automate                                                                 \\
+% 			High success rate                                                                \\
+% 			Fast
+% 		}                              & \makecell[tX]
+% 		{
+% 			Need a valid list of usernames                                                   \\
+% 			Has to be done against an authorization service such as a \gls{dc} or \gls{o365} \\
+% 			Noisy                                                                            \\
+% 			May lock accounts\cite{url:account-lockout-policy}
+% 		}                                                                                \\
+% 		\textbf{Known vulnerabilities} & \makecell[tX]{}    & \makecell[tX]{}            \\
+% 		\textbf{Clear text passwords}  & \makecell[tX]{}    & \makecell[tX]{}            \\
+% 		\textbf{Spoofing}              & \makecell[tX]{}    & \makecell[tX]{}            \\
+% 		\caption{Strengths and weaknesses of methods to gain initial foothold in a Windows AD environment}
+% 		\label{tab:strengths-weaknesses-initial-foothold}
+% 	\end{tabularx}
+% }
+
+
+
+All of the above mentioned methods are valid and used by most hackers during penetration testing. Due to the nature of the project and the accompanying software
+
 
 \subimport{spoofing/}{spoofing.tex}
 \subimport{credential-acquiring/}{credential-acquiring.tex}
