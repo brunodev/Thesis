@@ -13,3 +13,6 @@ Background tasks with hosted services in ASP.NET Core
 # NTLM
 * HTTP NTLM https://www.innovation.ch/personal/ronald/ntlm.html
 * SMB NTLM https://msdn.microsoft.com/en-us/library/cc669093.aspx
+
+# Spoofing
+* Awesome diagram https://pentest.blog/what-is-llmnr-wpad-and-how-to-abuse-them-during-pentest/

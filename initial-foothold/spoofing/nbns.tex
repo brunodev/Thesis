@@ -4,8 +4,15 @@
 \standalonetrue
 \begin{document}
 
-% sample content
-\subsubsection{NBNS - NetBIOS Name Resolution}
+% 15.1.2.  NAME QUERY (DISCOVERY)
+
+%    Name query (also known as "resolution" or "discovery") is the
+%    procedure by which the IP address(es) associated with a NetBIOS name
+%    are discovered.  Name query is required during the following
+%    operations:
+\subsubsection{\glsentryfull{nbns}}
+\label{sec:nbns}
+In Windows \gls{nbns} is implemented in the \gls{wins} which is a legacy service used to map host names to IP addresses. In newer versions of Windows it has no use, but it is kept for backward compatibility purposes. The NetBIOS RFC specification, RFC 1001\cite{url:rfc:netbios}, contains much more than Name Resolution, but for spoofing purposes we only need to look at Name Resolution. RFC 1002\cite{url:rfc:netbios-technical} contains detailed technical specification as to how Name Resolution is implemented in NetBIOS. 
 
 %\subimport{}{problem.tex}
 
