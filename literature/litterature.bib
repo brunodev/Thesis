@@ -44,6 +44,27 @@
 	Url = {https://support.microsoft.com/en-us/help/172218/microsoft-tcp-ip-host-name-resolution-order}
 }
 
+@online{url:microsoft:sspi-model,
+	Author = {Microsoft},
+	urldate = {2018-12-12},
+	Title = {SSPI Model},
+	Url = {https://docs.microsoft.com/en-us/windows/desktop/secauthn/sspi-model}
+}
+
+@online{url:microsoft:pass-the-hash-mitigation,
+	Author = {Microsoft},
+	urldate = {2018-12-12},
+	Title = {Mitigating Pass-the-Hash (PtH) Attacks and Other Credential Theft Techniques},
+	Url = {https://download.microsoft.com/download/7/7/a/77abc5bd-8320-41af-863c-6ecfb10cb4b9/mitigating%20pass-the-hash%20(pth)%20attacks%20and%20other%20credential%20theft%20techniques_english.pdf}
+}
+
+@online{url:microsoft:ntlm-message-syntax,
+	Author = {Microsoft},
+	urldate = {2018-12-24},
+	Title = {Microsoft NTLM - Message Syntax},
+	Url = {https://msdn.microsoft.com/en-us/library/cc236639.aspx}
+}
+
 %%%%%%%%%%%%%%%%%%%% RFC %%%%%%%%%%%%%%%%%%%%
 
 @techreport{url:rfc:netbios,
@@ -69,14 +90,14 @@
 }
 
 @techreport{url:rfc:llmnr,
-	AUTHOR = "Aboba, et al.",
+	AUTHOR = "Aboba et al.",
 	TITLE = "{Link-Local Multicast Name Resolution (LLMNR)}",
 	HOWPUBLISHED = {Internet Requests for Comments},
 	TYPE="{RFC}",
 	NUMBER=4795,
 	PUBLISHER = "{IETF}",
 	INSTITUTION = "{IETF}",
-	URL={https://tools.ietf.org/html/rfc1002}
+	URL={https://tools.ietf.org/html/rfc4795}
 }
 
 @techreport{url:rfc:dns,
@@ -90,3 +111,26 @@
 	URL={https://tools.ietf.org/html/rfc1035}
 }
 
+%%%%%%%%%%%%%%%%%%%% Misc %%%%%%%%%%%%%%%%%%%%
+@online{url:nbns-name-encoding,
+	Author = {Vladimir Gladkov - DZone - Integration Zone},
+	urldate = {2018-11-28},
+	Title = {Practical Fun with NetBIOS Name Service and Computer Browser Service},
+	Url = {https://dzone.com/articles/practical-fun-with-netbios-name-service-and-comput}
+}
+
+
+%%%%%%%%%%%%%%%%%%%% Hashes %%%%%%%%%%%%%%%%%%%%
+@online{url:hashes:hash-types,
+	Author = {Péter Gombos},
+	urldate = {2018-11-28},
+	Title = {LM, NTLM, Net-NTLMv2, oh my! - A Pentester’s Guide to Windows Hashes},
+	Url = {https://medium.com/@petergombos/lm-ntlm-net-ntlmv2-oh-my-a9b235c58ed4}
+}
+
+@online{url:hashes:netntlmv1-to-ntlm,
+	Author = {EvilMog},
+	urldate = {2018-11-28},
+	Title = {Reversing MSCHAPv2 to NTLM},
+	Url = {https://hashcat.net/forum/thread-5912.html}
+}

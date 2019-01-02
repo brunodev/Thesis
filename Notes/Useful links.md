@@ -16,3 +16,7 @@ Background tasks with hosted services in ASP.NET Core
 
 # Spoofing
 * Awesome diagram https://pentest.blog/what-is-llmnr-wpad-and-how-to-abuse-them-during-pentest/
+* NetBIOS name encoding https://dzone.com/articles/practical-fun-with-netbios-name-service-and-comput
+
+# SMB
+* Microsoft SMB Protocol Packet Exchange Scenario https://docs.microsoft.com/en-us/windows/desktop/fileio/microsoft-smb-protocol-packet-exchange-scenario

@@ -9,7 +9,7 @@
 \label{sec:llmnr}
 \gls{llmnr} is the newest protocol for name resolution where DNS name resolution is not possible\cite{url:rfc:llmnr}. \gls{llmnr} works in the same way as \gls{nbns} in such that a name query is sent to the link-scope multicast address(es), and a responder can hereafter respond to the packet and claim itself as the host that was requested. The sequence of events with \gls{llmnr} according to RFC 4795\cite{url:rfc:llmnr} is the following
 \begin{enumerate}
-	\item An \gls{llmnr} sender sends a \gls{llmnr} query to the link-scope multicast address(es). This is a \gls{llmnr} packet containing a Question Section
+	\item An \gls{llmnr} sender sends a \gls{llmnr} query to the link-scope multicast address(es) on port 5355. This is a \gls{llmnr} packet containing a Question Section
 	\item A responder responds to this query by sending an UDP packet. This is a \gls{llmnr} packet containing a Question Section and a Resource Record
 	\item The sender process the responders packet
 \end{enumerate}
@@ -22,65 +22,9 @@ This is all well if we assume that the network itself is not already compromised
 
 There exists two different \gls{llmnr} packet types. A \textbf{request} and a \textbf{response}. The \textbf{request} contains the \emph{header} and a \emph{question section}. The \textbf{response} contains a \emph{header}, a \emph{question section} and a \emph{resource record}. Format details of these types can be seen in figure \ref{fig:llmnr-packet}.
 
-\begin{figure}
-	\centering
-	\begin{bytefield}[bitwidth=2em]{16}
-		\begin{rightwordgroup}{Header}
-			\bitheader{0-15}\\
-			\bitbox{16}{ID}\\
-			\bitbox{1}{QR} & \bitbox{4}{QR} & \bitbox{1}{C} & \bitbox{1}{TC} & \bitbox{1}{T} & \bitbox{1}{Z} & \bitbox{1}{Z}  & \bitbox{1}{Z} & \bitbox{1}{Z}  & \bitbox{4}{RCODE}\\
-			\bitbox{16}{QDCOUNT}\\
-			\bitbox{16}{ANCOUNT}\\
-			\bitbox{16}{NSCOUNT}\\
-			\bitbox{16}{ARCOUNT}
-		\end{rightwordgroup}
-		\\\\
-		\begin{rightwordgroup}{Question section}
-			\wordbox[lrt]{1}{QNAME} \\
-			\wordbox[lrb]{1}{$\cdots$} \\
-			\bitbox{16}{QTYPE}\\
-			\bitbox{16}{QCLASS}
-		\end{rightwordgroup}
-		\\\\
-		\begin{rightwordgroup}{Resource record}
-			\wordbox[lrt]{1}{NAME} \\
-			\wordbox[lrb]{1}{$\cdots$} \\
-			\bitbox{16}{TYPE}\\
-			\bitbox{16}{CLASS} \\
-			\wordbox[lrtb]{2}{TTL} \\
-			\bitbox{16}{RDLENGTH} \\
-			\wordbox[lrt]{1}{RDATA} \\
-			\wordbox[lrb]{1}{$\cdots$}
-		\end{rightwordgroup}
-	\end{bytefield}
-	\caption{\glsentryfull{llmnr} packet specification\cite{url:rfc:llmnr}\cite{url:rfc:dns}}
-	\label{fig:llmnr-packet}
-\end{figure}
+\subimport{figures/}{llmnr-packet-specification.tex}
 
-This report will not explain the packet details in full, but will focus on the parts necessary to spoof a \gls{llmnr} response. The most important fields of the Question Section and the Resource Record is explained in list \ref{list:llmnr-question-section} and \ref{list:llmnr-resource-record}.
-\begin{customlist}
-	\begin{description}
-		\item[QNAME] A domain name in the following format: A length octet followed by that number of octets
-		\item[QTYPE] Two octet code which specify the query type. Usually $0x0001$ for Host address(IP)
-		\item[QCLASS] Two octet code which specify the query class. Usually $0x0001$ for Internet (IN)
-	\end{description}
-	\caption{Question Section}
-	\label{list:llmnr-question-section}
-\end{customlist}
-
-\begin{customlist}
-	\begin{description}
-		\item[NAME] See QNAME of \emph{Question Section}
-		\item[Type] See TYPE of \emph{Question Section}
-		\item[CLASS] See QCLASS of \emph{Question Section}
-		\item[TTL] a 32 bit unsigned integer which specify Time To Live in minutes
-		\item[RDLENGTH] a 32 bit unsigned integer which specify the number of octets in RDATA
-		\item[RDATA] A variable length string of octets. Usually an IP address
-	\end{description}
-	\caption{Resource record}
-	\label{list:llmnr-resource-record}
-\end{customlist}
-
+This report will not explain the packet details in full, but will focus on the parts necessary to spoof a \gls{llmnr} response. The most important fields of the Question Section and the Resource Record is explained in the figure.\\
 So to answer a \gls{llmnr} packet we need to create a \emph{Resource Record} to match the \emph{Question section} sent out by a client. \emph{Name, Type and Class} should match the request, \emph{TTL} should be set to an arbitrary time in minutes (for example 30 - $0x0000001e$ in bytes), \emph{RDLENGTH} should be 4 ($0x0004$) and RDATA should be our own IP Address.
 
 \begin{figure}[H]

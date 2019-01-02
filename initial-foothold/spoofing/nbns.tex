@@ -12,8 +12,43 @@
 %    operations:
 \subsubsection{\glsentryfull{nbns}}
 \label{sec:nbns}
-In Windows \gls{nbns} is implemented in the \gls{wins} which is a legacy service used to map host names to IP addresses. In newer versions of Windows it has no use, but it is kept for backward compatibility purposes. The NetBIOS RFC specification, RFC 1001\cite{url:rfc:netbios}, contains much more than Name Resolution, but for spoofing purposes we only need to look at Name Resolution. RFC 1002\cite{url:rfc:netbios-technical} contains detailed technical specification as to how Name Resolution is implemented in NetBIOS. 
+In Windows \gls{nbns} is implemented in the \gls{wins} which is a legacy service used to map host names to IP addresses. In newer versions of Windows it has no use, but it is kept for backward compatibility purposes. The NetBIOS RFC specification, RFC 1001\cite{url:rfc:netbios}, contains much more than Name Resolution, but for spoofing purposes we only need to look at Name Resolution.
+RFC 1002\cite{url:rfc:netbios-technical} contains detailed technical specification as to how Name Resolution is implemented in NetBIOS.\\
+\gls{nbns} has many other features such as Name Registration, Name Refresh etc. but in order to spoof name resolution we need to understand \emph{Name Query Request} packets and respond with \emph{Name Query Response} packets. The format of a \emph{Name Query Request} is specified on figure \ref{fig:nbns-name-query-request}. As it can be seen, only the fields \textbf{NAME\_TRN\_ID} and \textbf{QUESTION\_NAME} are necessary to read in order to generate a valid \emph{Name Query Request}.
 
-%\subimport{}{problem.tex}
+\subimport{figures/}{nbns-name-query-request.tex}
+
+To send a spoofed response to the \gls{nbns} request we need to reply with a \emph{Name Query Response}. The structure of a response packet can be seen in figure \ref{fig:nbns-name-query-response}. It is important to mention that question name is encoded using a very mysterious encoding and truncated to a maximum of 16 bytes. Each half-byte of the characters ASCII code is added to the ASCII Code 'A'\cite{url:nbns-name-encoding}, which result in every byte occupying two bytes in the resulting packet. So SERVER1\footnote{NetBIOS names are always uppercase} will be encoded to FDEFFCFGEFFCDBCACACACACACACACACA where CA is empty padding until the length is 32 bytes. Figure \ref{fig:nbns-name-query-response} shows the structure of a response, and describes the values of the different fields.
+
+\subimport{figures/}{nbns-name-query-response.tex}
+
+Figure \ref{fig:nbns-request} shows a real request sent from a Windows Server 2016 requesting the host for \textbf{Server1}. The corresponding values of \textbf{NAME\_TRN\_ID} and \textbf{RR\_NAME} is $0xd056$ and FDEFFCFGEFFCDBCACACACACACACACACA respectively. So as figure \ref{fig:nbns-name-query-response} shows, we need to construct a packet with the specified transaction ID and host name. Additionally, we set \textbf{TTL} to $0x000000a5$ (2 minutes and 45 seconds), \textbf{RDLENGTH} to 6 ($0x0006$) and NB\_ADDRESS to our own IP Address 10.211.55.4 ($0x0ad33704$). This results in the packet seen on figure \ref{fig:nbns-response} which is a direct response to \ref{fig:nbns-request} leading to a successful spoof.
+
+\begin{figure}[H]
+	\scriptsize
+	\par
+	\centering
+	\varwidth{\linewidth}
+	\verbatiminput{nbns-request.txt}
+	\endvarwidth
+	\par
+
+	\caption{\gls{nbns} Name Query Request}
+	\label{fig:nbns-request}
+\end{figure}
+
+\begin{figure}[H]
+	\scriptsize
+	\par
+	\centering
+	\varwidth{\linewidth}
+	\verbatiminput{nbns-response.txt}
+	\endvarwidth
+	\par
+
+	\caption{\gls{nbns} Name Query Response}
+	\label{fig:nbns-response}
+\end{figure}
+
 
 \end{document}
