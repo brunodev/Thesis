@@ -1,0 +1,19 @@
+\documentclass{article}
+\usepackage{import}
+\subimport{../../}{preamble.tex}
+\standalonetrue
+\begin{document}
+
+\subsubsection{NTLM}
+NTLM is the primary Challenge/Response protocol used in Windows authentication, and can easily be encapsulated in other protocols such as \gls{smb} and \gls{http}. The NTLM authentication protocol consists of three message types and is therefore a simple protocol\cite{url:microsoft:ntlm-message-syntax}. The three message types are the following:
+
+\begin{description}
+    \item[Negotiate] The client initiates the authentication.
+    \item[Challenge] The servers sends a 16 byte challenge to the client
+    \item[Authenticate] The client encrypts the challenge with the user's hash and sends it to the server.
+\end{description}
+
+This is a very simple authentication protocol which has it's obvious flaws. Once you've gotten the encrypted challenge back bruteforcing the password is very trivial. The encrypted challenge returned is either a NetNTLMv1 or NetNTLMv2 hash, as described in section \ref{sec:credential-types}, and can either be converted to a passable hash or bruteforced quickly using a couple of modern \gls{gpu}'s.
+
+
+\end{document}

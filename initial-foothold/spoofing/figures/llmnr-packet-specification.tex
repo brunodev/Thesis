@@ -1,0 +1,62 @@
+\documentclass{article}
+\usepackage{import}
+\subimport{../../../}{preamble.tex}
+\standalonetrue
+\begin{document}
+\begin{figure}[H]
+	\begin{center}
+		\begin{bytefield}[bitwidth=2em]{16}
+			\begin{rightwordgroup}{Header}
+				\bitheader{0-15}\\
+				\bitbox{16}{ID}\\
+				\bitbox{1}{QR} & \bitbox{4}{QR} & \bitbox{1}{C} & \bitbox{1}{TC} & \bitbox{1}{T} & \bitbox{1}{Z} & \bitbox{1}{Z}  & \bitbox{1}{Z} & \bitbox{1}{Z}  & \bitbox{4}{RCODE}\\
+				\bitbox{16}{QDCOUNT}\\
+				\bitbox{16}{ANCOUNT}\\
+				\bitbox{16}{NSCOUNT}\\
+				\bitbox{16}{ARCOUNT}
+			\end{rightwordgroup}
+			\\\\
+			\begin{rightwordgroup}{Question section}
+				\wordbox[lrt]{1}{QNAME} \\
+				\wordbox[lrb]{1}{$\cdots$} \\
+				\bitbox{16}{QTYPE}\\
+				\bitbox{16}{QCLASS}
+			\end{rightwordgroup}
+			\\\\
+			\begin{rightwordgroup}{Resource record}
+				\wordbox[lrt]{1}{NAME} \\
+				\wordbox[lrb]{1}{$\cdots$} \\
+				\bitbox{16}{TYPE}\\
+				\bitbox{16}{CLASS} \\
+				\wordbox[lrtb]{2}{TTL} \\
+				\bitbox{16}{RDLENGTH} \\
+				\wordbox[lrt]{1}{RDATA} \\
+				\wordbox[lrb]{1}{$\cdots$}
+			\end{rightwordgroup}
+		\end{bytefield}
+    \end{center}
+    \caption{\glsentryfull{llmnr} packet specification\cite{url:rfc:llmnr}\cite{url:rfc:dns}}
+\end{figure}
+
+\begin{figure}[H]
+    \ContinuedFloat
+	Where
+	\begin{description}
+		\item[QNAME] is a domain name in the following format: A length octet followed by that number of octets
+		\item[QTYPE] is a two octet code which specify the query type. Usually $0x0001$ for Host address(IP)
+		\item[QCLASS] is a two octet code which specify the query class. Usually $0x0001$ for Internet (IN)
+	\end{description}
+	And
+	\begin{description}
+		\item[NAME] See QNAME of \emph{Question Section}
+		\item[Type] See TYPE of \emph{Question Section}
+		\item[CLASS] See QCLASS of \emph{Question Section}
+		\item[TTL] is a 32 bit unsigned integer which specify Time To Live in minutes
+		\item[RDLENGTH] is a 32 bit unsigned integer which specify the number of octets in RDATA
+		\item[RDATA] is a variable length string of octets. Usually an IP address
+	\end{description}
+
+	\caption{\glsentryfull{llmnr} packet specification\cite{url:rfc:llmnr}\cite{url:rfc:dns}}
+	\label{fig:llmnr-packet}
+\end{figure}
+\end{document}

@@ -1,0 +1,38 @@
+\documentclass{article}
+\usepackage{import}
+\subimport{../../../}{preamble.tex}
+\standalonetrue
+\begin{document}
+\begin{figure}[H]
+	\begin{center}
+		\begin{bytefield}[bitwidth=1em]{32}
+			\bitheader{0-31}\\
+			\begin{rightwordgroup}{Header}
+				\bitbox{16}{NAME\_TRN\_ID} & \bitbox{1}{0} & \bitbox{4}{$0x0$} & \bitbox{1}{0} & \bitbox{1}{0} & \bitbox{1}{1} & \bitbox{1}{0} & \bitbox{2}{0 0} & \bitbox{1}{B} & \bitbox{4}{$0x0$}\\
+				\bitbox{16}{$0x0001$} & \bitbox{16}{$0x0000$} \\
+				\bitbox{16}{$0x0000$} & \bitbox{16}{$0x0000$}
+			\end{rightwordgroup}
+			\\
+			\begin{rightwordgroup}{Question Entries}
+				\wordbox[lrt]{1}{QUESTION\_NAME (255 octets)} \\
+				\skippedwords \\
+				\wordbox[lrb]{1}{$\cdots$} \\
+				\bitbox{16}{NB ($0x0020$)} & \bitbox{16}{IN ($0x0001$)}
+			\end{rightwordgroup}
+		\end{bytefield}
+	\end{center}
+
+	Where
+
+	\begin{description}
+		\item[NAME\_TRN\_ID] is the transaction ID for the Name Service Transaction
+		\item[QUESTION\_NAME] is the compressed name of the NetBIOS name for the request.
+	\end{description}
+	% \caption{\gls{nbns} Name Query Request fields}
+	% \label{list:nbns-name-query-request-fields}
+
+
+	\caption{\glsentryfull{nbns} Name Query Request\cite[sec. 4.2.12]{url:rfc:netbios-technical}}
+	\label{fig:nbns-name-query-request}
+\end{figure}
+\end{document}
