@@ -1,0 +1,50 @@
+\documentclass{article}
+\usepackage{import}
+\subimport{../../../}{preamble.tex}
+\standalonetrue
+\begin{document}
+\begin{figure}[H]
+    \begin{center}
+        \begin{bytefield}[bitwidth=4em]{8}
+            \bitheader{0-7}\\
+            \bitbox{8}{PROTOCOL}\\
+
+            \bitbox{1}{3} & \bitbox{1}{0} & \bitbox{1}{0} & \bitbox{1}{0} & \bitbox{2}{LM-LEN} &
+            \bitbox{2}{LM-LEN} \\
+            \bitbox{2}{LM-OFF} & \bitbox{1}{0} & \bitbox{1}{0}& \bitbox{2}{NT-LEN} &
+            \bitbox{2}{NT-LEN} \\
+            \bitbox{2}{NT-OFF} & \bitbox{1}{0} & \bitbox{1}{0}& \bitbox{2}{DOMAIN-LEN} &
+            \bitbox{2}{DOMAIN-LEN} \\
+            \bitbox{2}{DOMAIN-OFF} & \bitbox{1}{0} & \bitbox{1}{0}& \bitbox{2}{USER-LEN} &
+            \bitbox{2}{USER-LEN} \\
+            \bitbox{2}{USER-OFF} & \bitbox{1}{0} & \bitbox{1}{0}& \bitbox{2}{HOST-LEN} &
+            \bitbox{2}{HOST-LEN} \\
+            \bitbox{2}{HOST-OFF} & \bitbox{1}{0} & \bitbox{1}{0}& \bitbox{1}{0} & \bitbox{1}{0} & \bitbox{1}{0} & \bitbox{1}{0} \\
+            \bitbox{2}{MSG-LEN} & \bitbox{1}{0} & \bitbox{1}{0} & \bitbox{1}{$x01$} & \bitbox{1}{$x82$} & \bitbox{1}{0} & \bitbox{1}{0} \\
+
+            \wordbox[lrt]{1}{DOMAIN} \\
+            \wordbox[lrb]{1}{$\cdots$} \\
+
+            \wordbox[lrt]{1}{USER} \\
+            \wordbox[lrb]{1}{$\cdots$} \\
+
+            \wordbox[lrt]{1}{HOST} \\
+            \wordbox[lrb]{1}{$\cdots$} \\
+
+            \wordbox[lrt]{1}{LM} \\
+            \wordbox[lrb]{1}{$\cdots$} \\
+
+            \wordbox[lrt]{1}{NT} \\
+            \wordbox[lrb]{1}{$\cdots$} \\
+
+        \end{bytefield}
+    \end{center}
+    Where
+    \begin{description}
+        \item[PROTOCOL] is always \emph{NTLMSSP} followed by a null-byte
+        \item[CHALLENGE] 8 arbitrary bytes chosen by the server
+    \end{description}
+    \caption{NTLM Authenticate message}
+    \label{fig:ntlm-authenticate-message}
+\end{figure}
+\end{document}

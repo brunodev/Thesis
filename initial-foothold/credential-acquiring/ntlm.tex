@@ -13,7 +13,17 @@ NTLM is the primary Challenge/Response protocol used in Windows authentication, 
     \item[Authenticate] The client encrypts the challenge with the user's hash and sends it to the server.
 \end{description}
 
-This is a very simple authentication protocol which has it's obvious flaws. Once you've gotten the encrypted challenge back bruteforcing the password is very trivial. The encrypted challenge returned is either a NetNTLMv1 or NetNTLMv2 hash, as described in section \ref{sec:credential-types}, and can either be converted to a passable hash or bruteforced quickly using a couple of modern \gls{gpu}'s.
+This is a very simple authentication protocol which has it's obvious flaws. Once you've gotten the encrypted challenge back bruteforcing the password is very trivial. The encrypted challenge returned is either a NetNTLMv1 or NetNTLMv2 hash, as described in section \ref{sec:credential-types}, and can either be converted to a passable hash or bruteforced quickly using a couple of modern \gls{gpu}'s. All NTLM messages start with the protocol identifier \emph{NTLMSSP + a null byte (0x00)}\cite{url:http-ntlm-authentication}. After the identifier a type byte (0x01 for negotiate, 0x02 for challenge and 0x03 for authenticate), three null bytes, a four byte flag and another two null bytes. As mentioned, the server sends a \textbf{Challenge} message to the client (detailed on figure \ref{fig:ntlm-challenge-message}), whereafter the client replies with an \textbf{Authenticate} message (detailed on figure \ref{fig:ntlm-authenticate-message}).
+
+\paragraph{NTLM Challenge Message}
+The Challenge message contains a number of predefined fields such as protocol, flags and zero bytes, and the only not-predefined field is the eight byte challenge that is encrypted with the users password. The challenge is chosen by the server and should, according to the specification, change with every request. But seeing as we are implementing the server ourself, we can choose our own challenge and keep it the same for every request. This is particularly useful for when the password needs to be cracked as we can create rainbow tables beforehand.
+\subimport{figures/}{ntlm-challenge-message.tex}
+
+\paragraph{NTLM Authenticate message}
+The Authenticate message consists of five parts, namely Domain, User, Host, LM and NT. Each part has a length field, which for unknown reasons are duplicated in the protocol, a offset part and the actual content. Each part is separated by two null bits. This can be seen in detail on figure \ref{fig:ntlm-authenticate-message}. The contents of this message can be combined into an NetNTLMv2 hash with the format \emph{User::Domain:Challenge:LM:NT}
+\subimport{figures/}{ntlm-authenticate-message.tex}
+
+
 
 
 \end{document}

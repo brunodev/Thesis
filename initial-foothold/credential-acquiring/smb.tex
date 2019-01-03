@@ -12,12 +12,27 @@ A \gls{smb} session is first started whereafter NTLM authentication happens and 
 \subimport{figures/}{smb-ntlm.tex}
 
 The authentication flow of \gls{smb}, which can be seen on figure \ref{fig:smb-ntlm-authentication}, uses the following messages in the mentioned order
-\paragraph{SMB\_COM\_NEGOTIATE} The client first sends a SMB\_COM\_NEGOTIATE message whose purpose is to negotiate the supported authentication types.
-\paragraph{SMB\_COM\_RESPONSE} The server then responds with a SMB\_COM\_REPONSE stating the used authentication method that both the client and server supported. In our case this will always be set to NTLM authentication as we are not interested in Kerberos authentication.
-\paragraph{SMB\_COM\_SESSION\_SETUP\_ANDX request 1} The client then sends an encapsulated NTLM Negotiate message to the server.
-\paragraph{SMB\_COM\_SESSION\_SETUP\_ANDX response 1} The server then receives the NTLM negotiate message and replies with a NTLM Challenge
-\paragraph{SMB\_COM\_SESSION\_SETUP\_ANDX request 2} The client sends a NTLM Authenticate message containing the encrypted challenge
-\paragraph{Access denied} An access denied response is then sent to close the connection to the client. At this point we will have received a NetNTLMv1 or NetNTLMv2 hash, so we don't wish to continue the session.
+\paragraph{1. SMB\_COM\_NEGOTIATE} The client first sends a SMB\_COM\_NEGOTIATE message whose purpose is to negotiate the supported authentication types.
+\paragraph{2. SMB\_COM\_RESPONSE} The server responds with a SMB\_COM\_REPONSE stating the used authentication method that both the client and server supported. In our case this will always be set to NTLM authentication as we are not interested in Kerberos authentication.
+\paragraph{3. SMB\_COM\_SESSION\_SETUP\_ANDX request 1} The client sends an encapsulated NTLM Negotiate message to the server.
+\paragraph{4. SMB\_COM\_SESSION\_SETUP\_ANDX response 1} The server receives the NTLM negotiate message and replies with a NTLM Challenge
+\paragraph{5. SMB\_COM\_SESSION\_SETUP\_ANDX request 2} The client sends a NTLM Authenticate message containing the encrypted challenge
+\paragraph{6. Access denied} An access denied response is sent to close the connection to the client. At this point we will have received a NetNTLMv1 or NetNTLMv2 hash, so we don't wish to continue the session.
+\\\\
+In step \textbf{(5)} we receive an \emph{NTLM Authenticate} message which contains the encrypted challenge. An example of such a message can be seen on figure \ref{fig:smb-ntlm-authenticate}. Using the data given in this message, we can construct a NetNTLMv2 password hash which can be cracked offline using various cracking techniques such as bruteforcing or rainbow tables.
+
+\begin{figure}[H]
+	\scriptsize
+	\par
+	\centering
+	\varwidth{\linewidth}
+	\verbatiminput{smb-ntlm-authenticate.txt}
+	\endvarwidth
+    \par
+    
+    \caption{\gls{smb} NTLM Authenticate Message}
+    \label{fig:smb-ntlm-authenticate}
+\end{figure}
 
 %\subimport{}{problem.tex}
 

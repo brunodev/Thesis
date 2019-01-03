@@ -11,16 +11,16 @@
         \newthread[gray!30][6]{server}{Server}
         % \newthread[5]{server}{Server}
 
-        \mess[1]{client}{1. SMB Negotiate request}{server}
-        \mess[1]{server}{2. SMB Negotiate response}{client}
+        \mess[1]{client}{1. GET Request}{server}
+        \mess[1]{server}{2. 401 Unauthorized - Negotiate NTLM}{client}
 
         \mess[1]{client}{3. NTLM Negotiate}{server}
         \mess[1]{server}{4. NTLM Challenge}{client}
 
         \mess[1]{client}{5. NTLM Authenticate}{server}
-        \mess[1]{server}{6. Access denied}{client}
+        \mess[1]{server}{6. 200 Ok}{client}
     \end{sequencediagram}
-    \caption{\gls{smb} NTLM authentication\cite{url:smb-ntlm-authentication}}
-    \label{fig:smb-ntlm-authentication}
+    \caption{\gls{http} NTLM authentication\cite{url:http-ntlm-authentication}}
+    \label{fig:http-ntlm-authentication}
 \end{figure}
 \end{document}

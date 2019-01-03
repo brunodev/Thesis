@@ -6,7 +6,15 @@
 
 % sample content
 \subsubsection{\glsentryfull{http}}
+Implementing a NTLM \gls{http} \gls{ssp} is, once again, encapsulating the NTLM authentication messages into \gls{http}. This is done using the headers \textbf{WWW-Authenticate} and \textbf{Authorization} for the server and client respectively. The flow is very similar to that of \gls{smb}, and can be seen on figure \ref{fig:http-ntlm-authentication}. The flow starts with a client accessing a server on the standard http port 80\footnote{In theory this can be any arbitrary port but seeing as we're obtaining data based on spoofing we need to listen on port 80}, with the server responding with a 401 Unauthorized and supplying the header \emph{WWW-Authenticate: NTLM} to let the client know that the server supports NTLM authentication. After this the standard NTLM authentication occurs with Negotiate, Challenge and Authenticate messages encapsulated in \gls{http}. One important point to highlight is that the NTLM messages are encoded using base64 as \gls{http} is a text based protocol.
+After a successful NTLM Authentication over \gls{http} we are once again left with a Authenticate message containing the necessary information to construct a NetNTLMv2 password hash that can be cracked offline using various techniques.
 
-%\subimport{}{problem.tex}
+\subimport{figures/}{http-ntlm.tex}
+\paragraph{1. GET Request} The client initiates the connection with a GET request to the server
+\paragraph{2. 401 Unauthorized} The server responds the GET requests with a 401 Unauthorized response containing the \gls{http} header \emph{WWW-Authenticate: NTLM} letting the client know that it should authenticate using NTLM
+\paragraph{3. NTLM Negotiate} The client responds with another GET request containing the base64 encoded NTLM Negotiate message encapsulated in the Authorization header
+\paragraph{4. NTLM Challenge} The server responds with the base64 encoded NTLM Challenge message containing the challenge the client should encrypt in the WWW-Authentication header
+\paragraph{5. NTLM Authenticate} The client responds with the base64 encoded NTLM Authenticate message
+\paragraph{6. 200 Ok} The server now responds with a 200 Ok which let the client know that the credentials were accepted.
 
 \end{document}

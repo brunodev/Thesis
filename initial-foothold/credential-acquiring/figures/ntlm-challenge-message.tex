@@ -1,0 +1,27 @@
+\documentclass{article}
+\usepackage{import}
+\subimport{../../../}{preamble.tex}
+\standalonetrue
+\begin{document}
+\begin{figure}[H]
+    \begin{center}
+        \begin{bytefield}[bitwidth=3em]{8}
+            \bitheader{0-7}\\
+            \bitbox{8}{PROTOCOL}\\
+            \bitbox{1}{2} & \bitbox{1}{0} & \bitbox{1}{0} & \bitbox{1}{0} & \bitbox{1}{0} & \bitbox{1}{0} & \bitbox{1}{0} & \bitbox{1}{0} \\
+            \bitbox{2}{msg len} & \bitbox{1}{0} & \bitbox{1}{0} & \bitbox{2}{FLAGS} & \bitbox{1}{0} & \bitbox{1}{0} \\
+            \bitbox{8}{CHALLENGE} \\
+            \bitbox{1}{0} & \bitbox{1}{0} & \bitbox{1}{0} & \bitbox{1}{0} & \bitbox{1}{0} & \bitbox{1}{0} & \bitbox{1}{0} & \bitbox{1}{0} \\
+        \end{bytefield}
+    \end{center}
+    Where
+    \begin{description}
+        \item[PROTOCOL] is always \emph{NTLMSSP} followed by a null-byte
+        \item[CHALLENGE] 8 arbitrary bytes chosen by the server
+        \item[FLAGS] always set to $0x8201$ 
+    \end{description}
+
+    \caption{NTLM Challenge message}
+    \label{fig:ntlm-challenge-message}
+\end{figure}
+\end{document}
