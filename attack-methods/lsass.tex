@@ -5,8 +5,15 @@
 \begin{document}
 
 % sample content
-\subsection{LSASS secrets}
+\subsection{\glsentryfull{lsass}}
+\gls{lsass} is a protected subsystem that handles authentication and sessions in Windows. So whenever you login to a Windows machine, access it via \gls{rdp} or connect using \gls{smb} \gls{lsass} will handle the authentication and store the credentials in a safe way afterwards\footnote{\gls{lsass} does not always save the credentials in memory, it depends on the type of authentication and how it happens\cite{url:lsass:cred-in-memory}}.
+The feature of storing password in the memory is actually what \gls{sso} uses to sign-in automatically to services, and is a very essential part of why poisoning certain protocols work. But, it also gives us other opportunities to steal credentials. After gaining access to one user, using the aforementioned mentioned methods, we are freely available to query information in the \gls{ad} which can give us information about hosts, user privileges, user groups etc. Using this information it is possible to find hosts where the compromised user has administrator privileges. These privileges can be used to create a remote connection to the host and steal sessions from that particular host. Lets for example say that User1 has administrator privileges on the host jumpserver1. On jumpserver1 three other users are authenticated using \gls{rdp} and currently have an active session. In this case, he \gls{lsass} process (lsass.exe) on the host jumpserver1 will therefore contain a total of four cached credentials in the process memory. The type of password hash stored in memory varies with different Windows systems and level of patching, but a generel rule of thumb is that servers after Windows Server 2008 R1 and clients after Windows 7 mainly saves the password as a NT hash, and hosts before the mentioned versions save it as clear-text\cite{url:lsass:clear-text-2008}. Of course there exists tool to extract these credentials given an interactive login or a memory dump of the \gls{lsass} process. This will be discussed in depth in section \ref{sec:mimikatz}.
+\\\\
+Using this knowledge we
+
+
 \subsubsection{Impacket wmiexec}
-\subsubsection{Mimikatz}
+\subsubsection{\gls{lsass} credential extraction using Mimikatz}
+\label{sec:mimikatz}
 
 \end{document}
