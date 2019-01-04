@@ -23,7 +23,16 @@
 #### BloodHound
 
 ## Attack methods
-### Secretsdump / impacket
+* Explain why we can't use NetNTLMv2 hashes for anything yet
+    * Crack the password - Bruteforce
+
+### Pass-the-hash
+* How does it work?
+    * NTLM Authentication
+    * NT used to create NetNTLMv2 hashes
+
+### Impacket WMIExec
+### Mimikatz
 
 ## Implementation
 
