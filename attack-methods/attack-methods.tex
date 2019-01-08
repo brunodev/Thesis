@@ -13,6 +13,7 @@ In the rare case that a password is sufficiently complex and cannot easily be cr
 After we have cracked the password we need to move on to compromising the domain further. There are many was of doing this, and it it very dependent on the targets of the pentest. A common target for many Windows pentests is to gain Domain Admin privileges, either by compromising a user already possessing the privilege or by exploiting various vulnerabilities. This project primary goal is to become Domain Admin in a quiet and efficient way, that does not disturb the network and remain as close to undetectable as possible. Using vulnerabilities is first and foremost a very periodic way to achieving Domain Admin privileges, as most known vulnerabilities are fixed quite easily and we are not in the position of owning zero day vulnerabilities which can be easily burned on standard pentests. Luckily there are many other methods to achieve lateral movement in a Windows network, which this project will explore further in the following sections. Analyzing and discussing all the different types of attack would in itself be a very big project, so in this report we will focus on \gls{lsass} that, among other things, handles storage of credentials.
 
 \subimport{}{lsass.tex}
-\subimport{}{secretsdump.tex}
+\subimport{}{remote-access.tex}
+\subimport{}{lsass-extraction.tex}
 
 \end{document}

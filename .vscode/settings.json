@@ -1,9 +1,14 @@
 {
     "cSpell.words": [
+        "delpy",
         "dnsserver",
         "fdeffcfgeffcdbcacacacacacacacaca",
         "gpus",
         "hmac",
-        "jumpserver"
+        "jumpserver",
+        "logonpasswords",
+        "procdump",
+        "sekurlsa",
+        "sysinternal"
     ]
 }
