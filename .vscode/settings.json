@@ -1,5 +1,9 @@
 {
     "cSpell.words": [
+        "accepteula",
+        "backmatter",
+        "captionsdanish",
+        "captionsenglish",
         "delpy",
         "dnsserver",
         "fdeffcfgeffcdbcacacacacacacacaca",
@@ -7,8 +11,11 @@
         "hmac",
         "jumpserver",
         "logonpasswords",
+        "lsass",
         "procdump",
+        "rdata",
         "sekurlsa",
+        "subimport",
         "sysinternal"
     ]
 }

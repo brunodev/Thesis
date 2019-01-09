@@ -33,6 +33,7 @@
 	\end{center}
 	And
 	\begin{description}
+		\item[T] is whether or not the data is truncated
 		\item[NAME\_TRN\_ID] is the transaction ID from the request
 		\item[RR\_NAME] is the question name from the request
 		\item[TTL] is the time to live for the response in seconds
@@ -40,7 +41,7 @@
 		\item[ADDR\_ENTRY\_ARRAY] is zero or more of the following:
 		      \begin{description}
 			      \item[NB\_FLAGS] consists of three different things. Bit 0 is Group Name Flag (0), bit 1-2 is Owner Node Type (00) and bit 3-15 is reserved for future use (all 0)
-			      \item[NB\_ADDRESS] is an IP Address. In this case our own IP Address
+			      \item[NB\_ADDRESS] is an IP Address. In this case our own IP Address(The IP of the attacker)
 		      \end{description}
 	\end{description}
 	\caption{\glsentryfull{nbns} Name Query Response\cite[sec. 4.2.13]{url:rfc:netbios-technical}}

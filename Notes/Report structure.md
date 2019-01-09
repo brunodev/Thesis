@@ -1,6 +1,7 @@
 # Report structure
 
 ## Problem definition
+Leave out nbns and llmnr in the problem background??
 
 ## Introduction
 * Introduction

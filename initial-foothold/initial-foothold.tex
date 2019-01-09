@@ -15,7 +15,7 @@ In a Windows Active Directory Domain there are numerous ways of gaining an initi
 	\item[SPOOF] \gls{nbns} and/or \gls{llmnr} spoofing
 \end{description}
 
-All of the above mentioned methods have their weaknesses and strengths, which should be taken into account when choosing the best method or methods to gain initial foothold in the domain. To make an educated guess of which method(s) to pursue further a comparison between the different methods is needed. Table \ref{tab:initial-foothold-comparison} gives a comparison of the different methods, and shows which weaknesses and strengths each methods possess.
+All of the above mentioned methods have their weaknesses and strengths, which should be taken into account when choosing the best method or methods to gain initial foothold in a domain. To make an educated guess of which method(s) to pursue further a comparison between the different methods is needed. Table \ref{tab:initial-foothold-comparison} gives a comparison of the different methods, and shows which weaknesses and strengths each methods possess.
 
 	{
 		\setlength\LTleft{-0.25\textwidth}%
@@ -33,7 +33,7 @@ All of the above mentioned methods have their weaknesses and strengths, which sh
 		\end{tabularx}
 	}
 
-All of the above mentioned methods are valid and have been used during real penetration tests. Table \ref{tab:initial-foothold-comparison} scores each method according to their pros and cons, and here it is clearly showed that spoofing NBNS and LLMNR is the most optimal way of gaining initial foothold. This corresponds with real life experience where the protocols are enabled by default\cite{url:name-resolution} and not monitored correctly.
+All of the above mentioned methods are valid and are actively used in real life penetration tests. Table \ref{tab:initial-foothold-comparison} scores each method according to their pros and cons, and here the reader can clearly see that spoofing NBNS and LLMNR is the most optimal way of gaining initial foothold. This corresponds with real life experience where the protocols are enabled by default\cite{url:name-resolution} and not monitored correctly. It is important to mention that there exists a situation and place for every method, but the chosen method of spoofing is what will suit this project the best.
 \\
 Now that a method has been chosen, section \ref{sec:spoofing} will look further into how spoofing can be done in an automated way.
 

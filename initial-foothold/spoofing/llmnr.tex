@@ -24,8 +24,8 @@ There exists two different \gls{llmnr} packet types. A \textbf{request} and a \t
 
 \subimport{figures/}{llmnr-packet-specification.tex}
 
-This report will not explain the packet details in full, but will focus on the parts necessary to spoof a \gls{llmnr} response. The most important fields of the Question Section and the Resource Record is explained in the figure.\\
-So to answer a \gls{llmnr} packet we need to create a \emph{Resource Record} to match the \emph{Question section} sent out by a client. \emph{Name, Type and Class} should match the request, \emph{TTL} should be set to an arbitrary time in minutes (for example 30 - $0x0000001e$ in bytes), \emph{RDLENGTH} should be 4 ($0x0004$) and RDATA should be our own IP Address.
+This report will not explain the packet details in full, but will focus on the parts necessary to spoof a \gls{llmnr} response.\\
+To answer a \gls{llmnr} packet we need to create a \emph{Resource Record} to match the \emph{Question section} sent out by a client. \emph{Name, Type and Class} should match the request, \emph{TTL} should be set to an arbitrary time in minutes (for example 30 - $0x0000001e$ in bytes), \emph{RDLENGTH} should be 4 ($0x0004$) and \emph{RDATA} should be our own IP Address.
 
 \begin{figure}[H]
 	\scriptsize
@@ -53,7 +53,7 @@ So to answer a \gls{llmnr} packet we need to create a \emph{Resource Record} to 
     \label{fig:llmnr-response}
 \end{figure}
 
-Figure \ref{fig:llmnr-request} and \ref{fig:llmnr-response} shows how the response should look for a request for \emph{server1}. After sending this response we would have succeeded in spoofing the \gls{llmnr} protocol to send traffic to our host.
+Figure \ref{fig:llmnr-request} and \ref{fig:llmnr-response} shows a valid request and the corresponding spoofed response for a name resolution for \emph{server1}. After responding to the request with the proper response we would have successfully spoofed the \gls{llmnr} protocol and redirected traffic intended for server1 to our host(The attacker).
 %\subimport{}{problem.tex}
 
 \end{document}

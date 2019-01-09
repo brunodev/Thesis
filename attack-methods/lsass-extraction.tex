@@ -7,13 +7,13 @@
 \subsubsection{\glsentryfull{lsass} memory credential extraction}
 The \gls{lsass} process is a complex process with many usages as mentioned in section \ref{sec:lsass}. The part we are interested in for this project is the credentials stored in memory. A lot of effort has gone into reverse engineering and studying the memory of this process, but the most interesting work has been done by Benjamin Delpy who created the very well known tool Mimikatz\cite{url:lsass:mimikatz}.
 \label{sec:mimikatz}
-\paragraph{Mimikatz} Mimikatz has a lot of features but is mostly known for being able to extract credentials from the memory Windows machines. Over the years many steps have been taken to make Mimikatz irrelevant, but it continues to be one of the most useful tools for Windows hacking. Mimikatz works on both a memory dump or live on the host, but in our case we are interested in working on a memory dump, as uploading Mimikatz to a host will in many cases be flagged by \gls{av}. For this project we are therefore mostly interested in the following commands from the sekurlsa\footnote{sekurlsa means Secure \gls{lsa}} module\cite{url:lsass:mimikatz:sekurlsa}
+\paragraph{Mimikatz} Mimikatz has a lot of features but is mostly known for being able to extract credentials from the memory of Windows machines. Over the years many steps have been taken to make Mimikatz irrelevant, but it continues to be one of the most useful tools for Windows hacking. Mimikatz can work on both memory dumps or directly on the host, and in this project we are interested in working on a memory dump, as uploading Mimikatz to a host will in many cases be flagged by \gls{av}. For this project we are therefore mostly interested in the following commands from the sekurlsa\footnote{sekurlsa means Secure \gls{lsa}} module\cite{url:lsass:mimikatz:sekurlsa}
 
 \begin{description}
     \item[sekurlsa::minidump] The minidump command will switch Mimikatz into working on a memory dump instead of the current machine
     \item[sekurlsa::logonpasswords] The logonpasswords will extract all credentials found in memory. This may include both clear-text and hashed passwords
 \end{description}
 
-One important note is that in order for Mimikatz to work properly on a memory dump, the architecture of the hosts must match, so that if the memory dump is from a x64 machine, the host doing the credential extraction must also be a x64 machine.
+One important note is that in order for Mimikatz to work properly on a memory dump, the architecture of the hosts must match, so that if the memory dump is from a x64 machine the host doing the credential extraction must also be a x64 machine.
 
 \end{document}

@@ -4,11 +4,11 @@
     \standalonetrue
 \begin{document}
 \subsection{Problem background}
-When performing a pentest on Windows Active Directory environments, one of the goals is usually to obtain Domain Administrator privileges, usually in the form of a Domain Admin account. There are numerous ways to gain initial foothold in an Active Directory Domain, but the most common one is by exploiting the native protocols \gls{nbns} and \gls{llmnr}\cite{url:zero-to-domain-admin} to gain crackable hashes which can be bruteforced offline. Hereafter a number of different techniques and exploits can be used to gain additional credentials, but it usually consists of dumping cached credentials on domain joined hosts in one way or another.
+When performing a pentest on Windows Active Directory environments, one of the goals is usually to obtain Domain Administrator privileges in the form of a Domain Admin account. There are numerous ways to gain initial foothold in an Active Directory Domain, but the most common one is by exploiting the native protocols \gls{nbns} and \gls{llmnr}\cite{url:zero-to-domain-admin} to gain crackable hashes which can be bruteforced offline. Hereafter a number of different techniques and exploits can be used to gain additional credentials, but it usually consists of dumping cached credentials on domain joined hosts in one way or another.
 \\
 As one can easily figure out this is usually a manual job where many different tools are joined together to produce the right result. This usually means it is a trivial and easy job, which requires a lot of time that can be spent on more advanced tasks. This is often done with tools not written by the pentester themselves, which can pose a security risk as the tools can be backdoored or otherwise have security vulnerabilities.
 \\
-One of the objectives of a pentest is usually to be as silent as possible and not trigger any alerts in any \gls{ids}, \gls{siem} or similar systems. The risk of using publicly available tools is therefore also that the tools are highly likely to be detected by \gls{av} and will often trigger unwanted alerts.
+During a pentest it is usually required to be as silent as possible and not trigger any alerts in any \gls{ids}, \gls{siem} or similar systems. The risk of using publicly available tools is therefore also that the tools are highly likely to be detected by \gls{av} and will often trigger unwanted alerts.
 \\
 Another issue of performing pentests is to document and remember the order of tasks that where done. A pentest usually concludes with a report where the necessary steps are explained to the customer, and this includes in what order tasks were done and which user credentials were used.
 

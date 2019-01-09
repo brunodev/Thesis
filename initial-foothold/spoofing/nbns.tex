@@ -22,7 +22,7 @@ To send a spoofed response to the \gls{nbns} request we need to reply with a \em
 
 \subimport{figures/}{nbns-name-query-response.tex}
 
-Figure \ref{fig:nbns-request} shows a real request sent from a Windows Server 2016 requesting the host for \textbf{Server1}. The corresponding values of \textbf{NAME\_TRN\_ID} and \textbf{RR\_NAME} is $0xd056$ and FDEFFCFGEFFCDBCACACACACACACACACA respectively. So as figure \ref{fig:nbns-name-query-response} shows, we need to construct a packet with the specified transaction ID and host name. Additionally, we set \textbf{TTL} to $0x000000a5$ (2 minutes and 45 seconds), \textbf{RDLENGTH} to 6 ($0x0006$) and NB\_ADDRESS to our own IP Address 10.211.55.4 ($0x0ad33704$). This results in the packet seen on figure \ref{fig:nbns-response} which is a direct response to \ref{fig:nbns-request} leading to a successful spoof.
+Figure \ref{fig:nbns-request} shows a real request sent from a Windows Server 2016 requesting the host for \textbf{Server1}. The corresponding values of \textbf{NAME\_TRN\_ID} and \textbf{RR\_NAME} is $0xd056$ and FDEFFCFGEFFCDBCACACACACACACACACA respectively. According to the information gained from figure \ref{fig:nbns-name-query-response}, we need to construct a packet with the specified transaction ID and host name. Additionally, we set \textbf{TTL} to $0x000000a5$ (2 minutes and 45 seconds), \textbf{RDLENGTH} to 6 ($0x0006$) and NB\_ADDRESS to our own IP Address 10.211.55.4 ($0x0ad33704$). This results in the packet seen on figure \ref{fig:nbns-response} which is a direct response to \ref{fig:nbns-request} leading to a successful spoof.
 
 \begin{figure}[H]
 	\scriptsize
