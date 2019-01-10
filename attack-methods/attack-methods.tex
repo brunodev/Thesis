@@ -6,6 +6,7 @@
 
 % sample content
 \section{Attack methods}
+\label{sec:attack-methods}
 After successfully spoofing a victim by abusing \gls{llmnr} and \gls{nbns} and getting a NetNTLMv2 hash by running fake \gls{smb} and \gls{http} services, we are at a point where we need to use more traditional methods to compromise the network further. As mentioned in section \ref{sec:credential-types} both NetNTLMv2 and NetNTLMv1 hashes encrypts the server given challenge with either the NT or LM hash. In other words we can use bruteforcing tools such as hashcat\cite{url:hashes:hashcat-example-hashes} to crack the hashes and gain the original password, which will of course lead to a full user compromise as we then have username and password in clear-text.
 \\
 In the rare case that a password is sufficiently complex and cannot easily be cracked or otherwise guessed, there still exists methods to utilize spoofing and poisoning to gain unauthorized access to systems. One such method is called NTLM Relaying\cite{url:ntlm-relaying} where you construct your \gls{http} or \gls{smb} services to relay the credentials to another server/host.\footnote{Relaying credentials is outside the scope of this project, but is something that would work well with the rest of setup}

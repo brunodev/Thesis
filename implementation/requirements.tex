@@ -1,0 +1,44 @@
+\documentclass{article}
+\usepackage{import}
+\subimport{../}{preamble.tex}
+\standalonetrue
+\begin{document}
+
+% sample content
+\subsection{Requirements}
+\label{sec:requirements}
+This project is mostly designed for the authors own needs and workflow, so the requirements are not strictly set or defined. This only works because it is a one-man project with only one developer. In case multiple developers were to work on the project simultaneously both requirements and other technical parts should be more strict and not leave it up to the developer to decide. The most general requirements are mentioned below, split into functional and technical requirements, as this will give a satisfactory overview of the project and its technological choices.
+\paragraph{Functional requirements}
+\begin{enumerate}
+    \item Should be designed with ease of use in mind
+    \item Must save actions to the disk in an easy to read format
+    \item Must implement both a \gls{llmnr} and \gls{nbns} spoofer
+    \item Must implement both a \gls{smb} and \gls{http} service for credential acquiring
+    \item Must be able to dump and download the \gls{lsass} process memory from another host on the network
+    \item Must be able to extract NT hashes and clear-text from said memory dump
+    \item Must be able to show a list of credentials in a graphical interface
+    \item Must be able to show a list of hosts in a graphical interface
+    \item Must be able to show a log of all actions done
+    \item Must update interface seamlessly, ie the user should not manually update the interface to see changes
+    \item Sensitive information must be encrypted when saved on the disk
+\end{enumerate}
+
+\paragraph{Technical requirements}
+\begin{enumerate}
+    \item The software must be developed in C\# using ASP.NET Core
+    \item The software should strive to be cross platform
+    \item The graphical interface must be web-based
+    \item WebSockets should be used to create a real-time app
+    \item The code must be modular
+    \item The code should be written with high cohesion and low coupling, such that the graphical interface can easily be exchanged
+    \item The code must be multi-threaded so that multiple actions can be done simultaneously
+    \item Data must be saved in \gls{json} files on the disk
+    \item A C\# annotation should be used to specify fields to encrypt when saving to disk
+    \item Saving data to disk should not disrupt any other actions
+    \item The frontend should use a JavaScript framework such as React, Angular or Vue
+\end{enumerate}
+
+To concretize the requirement list the software should be a web-app developed in C\# using ASP.NET Core. The Web app should be fluid and work seamlessly, and this should be achieved by using WebSockets combined with a JavaScript framework to ensure that the graphical interface is updated immediately without any user actions. The graphical interface in the form of a web-app must be easily exchangeable such that it can be changed without extensive refactoring of the underlying backend codebase. Additionally the underlying backend (from hereon denoted worker) should implement the spoofing protocols weaponized in section \ref{sec:initial-foothold} (\nameref{sec:initial-foothold}) and the attack methods analyzed in section \ref{sec:attack-methods} (\nameref{sec:attack-methods}).
+
+
+\end{document}

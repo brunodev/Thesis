@@ -15,6 +15,7 @@
         "procdump",
         "rdata",
         "sekurlsa",
+        "spoofers",
         "subimport",
         "sysinternal"
     ]

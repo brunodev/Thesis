@@ -6,22 +6,13 @@
 
 % sample content
 \section{Implementation}
-\begin{figure}
-	\centering
-	\begin{sequencediagram}
-		\newthread{A}{Controller}{}
-        \newinst[1]{B}{Worker}{}
-        \newinst[1]{C}{Third party program}{}
-		\begin{call}{A}{Call()}{B}{}
-            \begin{call}{B}{Call()}{C}{}
-            \end{call}
-        \end{call}
-    \end{sequencediagram}
-    \label{fig:test-figure}
-    \caption{Test figure}
-\end{figure}
+In the previous sections the different protocols and techniques were described in depth. The next logical step is, of course, to implement this into a working piece of software that can be used in real life situations. To do this we need to establish some requirements for the software, apart from the obvious one that it has to implement the spoofers, the services and dump functionality. As the title states, the software needs to be easy to use and contain a high level of traceability, such that timeline of actions can be created easily. Other considerations such as security should also be taken, for example passwords should not be saved in clear text on the disk, as we are not always sure that the host is properly secured. When deploying the software on foreign networks, we do not want to alter the state of security that the network is currently in, as we can not be sure that the network does not contain malicious actors.
+
+\subimport{}{requirements.tex}
+
 \subimport{technologies/}{technologies.tex}
 \subimport{considerations/}{considerations.tex}
 \subimport{storage/}{storage.tex}
+\subimport{final-software/}{final-software.tex}
 
 \end{document}

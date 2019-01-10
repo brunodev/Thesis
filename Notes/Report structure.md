@@ -37,9 +37,6 @@ Leave out nbns and llmnr in the problem background??
 
 ## Implementation
 
-* Structure diagrams
-* Workflow diagrams
-
 ### Technologies
 * VueJS
 * SignalR
@@ -49,5 +46,9 @@ Leave out nbns and llmnr in the problem background??
 * Modular
 * Ease of use
 * Traceability
+
+### Final product
+* Structure diagrams
+* Workflow diagrams
 
 ## Discussion
