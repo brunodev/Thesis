@@ -1,0 +1,12 @@
+@startuml
+class ProcessResult {
+    + ProcessResult()
+    + Key : object <<get>>
+    + Timestamp : DateTime <<get>> <<set>>
+    + Path : string <<get>> <<set>>
+    + Arguments : string <<get>> <<set>>
+    + ResultOutput : string <<get>> <<set>>
+    + HasErrors : bool <<get>>
+}
+IDataObject <|-- ProcessResult
+@enduml

@@ -1,0 +1,6 @@
+@startuml
+interface "IHubActions`1"<T> {
+    Add(entity:T) : Task
+    Edit(entity:T) : Task
+}
+@enduml

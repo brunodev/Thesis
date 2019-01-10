@@ -1,0 +1,19 @@
+@startuml Worker
+!include ElCazador.Worker/Worker.puml
+!include ElCazador.Worker/Modules/IPersistantModule.puml
+!include ElCazador.Worker/Modules/IToolModule.puml
+!include ElCazador.Worker/Modules/IModule.puml
+!include ElCazador.Worker/Modules/BaseModule.puml
+!include ElCazador.Worker/Interfaces/IWorkerController.puml
+!include ElCazador.Worker/Modules/Tools/LsassDumpTool.puml
+!include ElCazador.Worker/Modules/Spoofers/ISpoofer.puml
+!include ElCazador.Worker/Modules/Spoofers/LLMNRSpoofer.puml
+!include ElCazador.Worker/Modules/Spoofers/SpooferCore.puml
+!include ElCazador.Worker/Modules/Spoofers/SpooferSettings.puml
+!include ElCazador.Worker/Modules/Spoofers/BaseSpoofer.puml
+!include ElCazador.Worker/Modules/Spoofers/NBNSSpoofer.puml
+!include ElCazador.Worker/Modules/Servers/SMBServer.puml
+!include ElCazador.Worker/Modules/Servers/HttpServer.puml
+
+!include worker-connections.puml
+@enduml

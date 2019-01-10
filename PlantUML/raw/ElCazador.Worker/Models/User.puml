@@ -1,0 +1,15 @@
+@startuml
+class User {
+    + User()
+    + Key : object <<get>>
+    + Timestamp : DateTime <<get>> <<set>>
+    + IPAddress : string <<get>> <<set>>
+    + Username : string <<get>> <<set>>
+    + Domain : string <<get>> <<set>>
+    + IsClearText : bool <<get>> <<set>>
+    + PasswordType : string <<get>> <<set>>
+    + HashcatFormat : string <<get>> <<set>>
+    + Hash : string <<get>> <<set>>
+}
+IDataObject <|-- User
+@enduml

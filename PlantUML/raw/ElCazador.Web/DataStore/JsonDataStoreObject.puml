@@ -1,0 +1,29 @@
+@startuml
+class "JsonDataStoreObject`1"<T> {
+    + Name : string <<get>>
+    - FileName : string <<get>>
+    - FullPath : string <<get>>
+    - LastCommit : DateTime <<get>> <<set>>
+    - LastRead : DateTime <<get>> <<set>>
+    - Watcher : FileSystemWatcher <<get>> <<set>>
+    - HostingEnvironment : IHostingEnvironment <<get>> <<set>>
+    - Store : ConcurrentDictionary<object, T> <<get>> <<set>>
+    - Semaphore : SemaphoreSlim
+    - JsonSettings : JsonSerializerSettings <<get>> <<set>>
+    + JsonDataStoreObject(hostingEnvironment:IHostingEnvironment)
+    - Initialize() : void
+    - StartWatcher() : void
+    - OnChanged(source:object, e:FileSystemEventArgs) : void
+    + All : IEnumerable<T> <<get>>
+    + Get(key:object) : T
+    + <<async>> Add(entity:T) : Task
+    + <<async>> Delete(entity:T) : Task
+    + <<async>> Edit(entity:T) : Task
+    - <<async>> AddOrEditInternal(entity:T) : Task
+    - <<async>> DeleteInternal(entity:T) : Task
+    - <<async>> Commit() : Task
+    - Serialize() : string
+    - Deserialize(content:string) : IEnumerable<T>
+}
+"IDataStoreObject`1" "<T>" <|-- "JsonDataStoreObject`1"
+@enduml

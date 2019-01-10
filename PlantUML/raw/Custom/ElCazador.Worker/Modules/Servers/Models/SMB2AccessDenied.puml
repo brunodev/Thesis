@@ -1,0 +1,11 @@
+@startuml
+class SMB2AccessDenied {
+    - Header : IEnumerable<byte> <<get>> <<set>>
+    <<internal>> SMB2AccessDenied(header:IEnumerable<byte>)
+    + Build() : byte[]
+    + Len : IEnumerable<byte> <<get>> <<set>>
+    + SessionFlag : IEnumerable<byte> <<get>> <<set>>
+    + SecBlobOffSet : IEnumerable<byte> <<get>> <<set>>
+}
+IPacket <|-- SMB2AccessDenied
+@enduml

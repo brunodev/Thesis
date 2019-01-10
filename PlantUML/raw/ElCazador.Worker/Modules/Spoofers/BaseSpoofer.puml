@@ -1,0 +1,16 @@
+@startuml
+abstract class BaseSpoofer {
+    # Settings : SpooferSettings <<get>> <<set>>
+    # SocketType : Models.SocketType <<get>> <<set>>
+    # Controller : IWorkerController <<get>>
+    # {abstract} Protocol : string <<get>>
+    <<internal>> BaseSpoofer(controller:IWorkerController, settings:SpooferSettings, socketType:Models.SocketType)
+    # {abstract} CheckRules(state:SpooferPacket) : bool
+    # {abstract} GetName(state:SpooferPacket) : string
+    # {abstract} GetPacket(data:byte[], ip:byte[]) : IPacket
+    + <<async>> HandlePacket(state:SpooferPacket) : Task
+    + <<async>> HandleRequestPacket(state:SpooferPacket) : Task
+    + <<async>> SpoofPacket(state:SpooferPacket) : Task
+}
+ISpoofer <|-- BaseSpoofer
+@enduml

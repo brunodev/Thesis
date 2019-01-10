@@ -1,0 +1,11 @@
+@startuml
+class LLMNRSpoofer {
+    - <<const>> StaticPacketLength : int = 18
+    # <<override>> Protocol : string <<get>>
+    + LLMNRSpoofer(controller:IWorkerController, settings:SpooferSettings, socketType:Models.SocketType)
+    # <<override>> GetPacket(data:byte[], ip:byte[]) : IPacket
+    # <<override>> CheckRules(state:SpooferPacket) : bool
+    # <<override>> GetName(state:SpooferPacket) : string
+}
+BaseSpoofer <|-- LLMNRSpoofer
+@enduml

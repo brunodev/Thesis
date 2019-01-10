@@ -1,0 +1,8 @@
+@startuml
+interface IPersistantModule {
+    Run() : Task
+    Stop() : Task
+    IsEnabled : bool <<get>>
+}
+IModule <|-- IPersistantModule
+@enduml

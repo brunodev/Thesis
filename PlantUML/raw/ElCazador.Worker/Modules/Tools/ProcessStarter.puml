@@ -1,0 +1,5 @@
+@startuml
+class ProcessStarter <<static>> {
+    + {static} <<async>> Start(filename:string, arguments:string) : Task<ProcessResult>
+}
+@enduml

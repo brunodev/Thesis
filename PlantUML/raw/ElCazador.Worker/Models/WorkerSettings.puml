@@ -1,0 +1,13 @@
+@startuml
+class WorkerSettings {
+    - Configuration : IConfiguration <<get>> <<set>>
+    + WorkerSettings(configuration:IConfiguration)
+    + IP : IPAddress <<get>>
+    + ImpacketExamplesPath : string <<get>>
+    + DumpPath : string <<get>>
+    + PythonExecutable : string <<get>>
+    + MimikatzExecutable : string <<get>>
+    + ProcdumpExecutable : string <<get>>
+}
+IWorkerSettings <|-- WorkerSettings
+@enduml

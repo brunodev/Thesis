@@ -1,0 +1,6 @@
+@startuml
+enum Sockets {
+    NBNS,
+    LLMNR,
+}
+@enduml

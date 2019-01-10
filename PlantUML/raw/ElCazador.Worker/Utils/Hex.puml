@@ -1,0 +1,21 @@
+@startuml
+class Hex {
+    - <<readonly>> _bytes : byte[]
+    - <<readonly>> _bytesPerLine : int
+    - <<readonly>> _showHeader : bool
+    - <<readonly>> _showOffset : bool
+    - <<readonly>> _showAscii : bool
+    - <<readonly>> _length : int
+    - _index : int
+    - <<readonly>> _sb : StringBuilder
+    - Hex(bytes:byte[], bytesPerLine:int, showHeader:bool, showOffset:bool, showAscii:bool)
+    + {static} Dump(bytes:byte[], bytesPerLine:int, showHeader:bool, showOffset:bool, showAscii:bool) : string
+    - Dump() : string
+    - WriteHeader() : void
+    - WriteBody() : void
+    - WriteOffset() : void
+    - WriteByte() : void
+    - WriteAscii() : void
+    - Translate(b:byte) : string
+}
+@enduml

@@ -1,0 +1,6 @@
+@startuml
+interface IToolModule {
+    Run(target:Target, user:User) : Task
+}
+IModule <|-- IToolModule
+@enduml

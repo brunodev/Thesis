@@ -1,0 +1,22 @@
+@startuml
+class SMBServer {
+    - {static} mre : ManualResetEvent
+    - Socket : Socket <<get>> <<set>>
+    + IsEnabled : bool <<get>>
+    + SMBServer(controller:IWorkerController)
+    + <<async>> Run() : Task
+    + <<async>> Stop() : Task
+    - <<async>> StartSocket() : Task
+    - <<async>> AcceptCallback(asyncResult:IAsyncResult) : Task
+    - <<async>> ReadCallback(asyncResult:IAsyncResult) : Task
+    - <<async>> ParseHash(packet:SMBPacket) : Task
+    - <<async>> NegotiateSMB1ToSMB2Response(packet:SMBPacket) : Task
+    - <<async>> NegotiateResponse(packet:SMBPacket) : Task
+    - <<async>> NegotiateNTLMResponse(packet:SMBPacket) : Task
+    - <<async>> SendAccessDenied(packet:SMBPacket) : Task
+    - <<async>> Send(handler:Socket, data:byte[]) : Task
+    - <<async>> SendCallback(ar:IAsyncResult) : Task
+}
+BaseModule <|-- SMBServer
+IPersistantModule <|-- SMBServer
+@enduml

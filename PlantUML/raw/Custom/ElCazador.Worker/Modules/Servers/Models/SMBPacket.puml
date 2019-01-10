@@ -1,0 +1,14 @@
+@startuml
+class SMBPacket {
+    + <<const>> BUFFER_SIZE : int = 1024
+    <<internal>> Buffer : byte[] <<get>> <<set>>
+    <<internal>> Socket : Socket <<get>> <<set>>
+    <<internal>> ProtocolVersion : byte <<get>>
+    <<internal>> Command : IEnumerable<byte> <<get>>
+    <<internal>> MessageID : IEnumerable<byte> <<get>>
+    <<internal>> CreditCharge : IEnumerable<byte> <<get>>
+    <<internal>> ProcessID : IEnumerable<byte> <<get>>
+    <<internal>> Credits : IEnumerable<byte> <<get>>
+    <<internal>> SessionID : IEnumerable<byte> <<get>>
+}
+@enduml

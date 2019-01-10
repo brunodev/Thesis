@@ -1,0 +1,13 @@
+@startuml
+class LogEntry {
+    + LogEntry()
+    + Key : object <<get>> <<set>>
+    + Timestamp : DateTime <<get>> <<set>>
+    + Name : string <<get>> <<set>>
+    + Message : string <<get>> <<set>>
+    + Parameters : object[] <<get>> <<set>>
+    + FormattedMessage : string <<get>>
+    + TimestampString : string <<get>>
+}
+IDataObject <|-- LogEntry
+@enduml

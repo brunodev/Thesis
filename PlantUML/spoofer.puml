@@ -1,0 +1,65 @@
+@startuml
+class LLMNRSpoofer {
+    - <<const>> StaticPacketLength : int = 18
+    # <<override>> Protocol : string <<get>>
+    + LLMNRSpoofer(controller:IWorkerController, settings:SpooferSettings, socketType:Models.SocketType)
+    # <<override>> GetPacket(data:byte[], ip:byte[]) : IPacket
+    # <<override>> CheckRules(state:SpooferPacket) : bool
+    # <<override>> GetName(state:SpooferPacket) : string
+}
+BaseSpoofer <|-- LLMNRSpoofer
+
+abstract class BaseSpoofer {
+    # Settings : SpooferSettings <<get>> <<set>>
+    # SocketType : Models.SocketType <<get>> <<set>>
+    # Controller : IWorkerController <<get>>
+    # {abstract} Protocol : string <<get>>
+    <<internal>> BaseSpoofer(controller:IWorkerController, settings:SpooferSettings, socketType:Models.SocketType)
+    # {abstract} CheckRules(state:SpooferPacket) : bool
+    # {abstract} GetName(state:SpooferPacket) : string
+    # {abstract} GetPacket(data:byte[], ip:byte[]) : IPacket
+    + <<async>> HandlePacket(state:SpooferPacket) : Task
+    + <<async>> HandleRequestPacket(state:SpooferPacket) : Task
+    + <<async>> SpoofPacket(state:SpooferPacket) : Task
+}
+ISpoofer <|-- BaseSpoofer
+
+class NBNSSpoofer {
+    # <<override>> Protocol : string <<get>>
+    + NBNSSpoofer(controller:IWorkerController, settings:SpooferSettings, socketType:Models.SocketType)
+    # <<override>> GetPacket(data:byte[], ip:byte[]) : IPacket
+    # <<override>> CheckRules(state:SpooferPacket) : bool
+    # <<override>> GetName(state:SpooferPacket) : string
+    - {static} DecodeName(bytes:byte[]) : string
+}
+BaseSpoofer <|-- NBNSSpoofer
+
+class SpooferCore {
+    - Settings : SpooferSettings <<get>> <<set>>
+    - UDP137Socket : Models.SocketType
+    - UDP5355Socket : Models.SocketType
+    - Spoofers : IDictionary<Models.SocketType, List<ISpoofer>> <<get>> <<set>>
+    - SocketTypes : IList<Models.SocketType> <<get>> <<set>>
+    + IsEnabled : bool <<get>>
+    <<internal>> SpooferCore(controller:IWorkerController, settings:SpooferSettings)
+    + <<async>> Run() : Task
+    + <<async>> Stop() : Task
+    - AddSpoofer(socketType:Models.SocketType, spoofer:ISpoofer, run:bool) : void
+    - <<async>> StartSocket(socketType:Models.SocketType) : Task
+    - <<async>> StartSockets() : Task
+    - <<async>> BeginReceiveSockets() : Task
+    + <<async>> ReadCallback(result:IAsyncResult, socketType:Models.SocketType) : Task
+}
+AbstractModule <|-- SpooferCore
+IPersistantModule <|-- SpooferCore
+SpooferCore "1" *--  "1..*" ISpoofer
+
+class SpooferSettings {
+    <<internal>> NBNS : bool <<get>> <<set>> = true
+    <<internal>> LLMNR : bool <<get>> <<set>> = true
+    <<internal>> Inspect : bool <<get>> <<set>> = false
+}
+
+
+
+@enduml

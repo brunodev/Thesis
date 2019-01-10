@@ -1,0 +1,4 @@
+SpooferCore "1" *-- "0..*" ISpoofer
+SpooferCore "1" *-- "1" SpooferSettings
+Worker "1" *-- "0..*" IModule
+Worker "1" *-- "1" IWorkerController

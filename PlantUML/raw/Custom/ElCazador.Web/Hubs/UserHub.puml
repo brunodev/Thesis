@@ -1,0 +1,11 @@
+@startuml
+class UserHub {
+    - WorkerController : IWorkerController <<get>> <<set>>
+    - DataStore : IDataStore <<get>> <<set>>
+    - UserHubActions : IHubActions<User> <<get>> <<set>>
+    + UserHub(workerController:IWorkerController, dataStore:IDataStore, userHubActions:IHubActions<User>)
+    + <<async>> <<override>> OnConnectedAsync() : Task
+    + <<async>> AddUser(user:User) : Task
+}
+Hub <|-- UserHub
+@enduml

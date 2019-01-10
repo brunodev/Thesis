@@ -1,0 +1,11 @@
+@startuml
+class LogHub {
+    - WorkerController : IWorkerController <<get>> <<set>>
+    - DataStore : IDataStore <<get>> <<set>>
+    - LogHubActions : IHubActions<LogEntry> <<get>> <<set>>
+    + LogHub(workerController:IWorkerController, dataStore:IDataStore, userHubActions:IHubActions<LogEntry>)
+    + <<async>> <<override>> OnConnectedAsync() : Task
+    + <<async>> AddLogEntry(entry:LogEntry) : Task
+}
+Hub <|-- LogHub
+@enduml

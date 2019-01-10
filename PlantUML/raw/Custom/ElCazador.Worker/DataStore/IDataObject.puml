@@ -1,0 +1,6 @@
+@startuml
+interface IDataObject {
+    Key : object <<get>>
+    Timestamp : DateTime <<get>>
+}
+@enduml

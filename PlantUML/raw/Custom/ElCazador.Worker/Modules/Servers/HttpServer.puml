@@ -1,0 +1,16 @@
+@startuml
+class HTTPServer {
+    - Listener : HttpListener <<get>> <<set>>
+    - Port : int <<get>> <<set>>
+    + IsEnabled : bool <<get>>
+    + HTTPServer(controller:IWorkerController, port:int)
+    + <<async>> Run() : Task
+    + <<async>> Stop() : Task
+    - <<async>> Listen() : Task
+    - <<async>> Process(context:HttpListenerContext) : Task
+    - <<async>> GetNTLMHash(context:HttpListenerContext) : Task
+    - Initialize(port:int) : void
+}
+BaseModule <|-- HTTPServer
+IPersistantModule <|-- HTTPServer
+@enduml

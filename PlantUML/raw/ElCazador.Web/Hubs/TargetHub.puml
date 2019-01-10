@@ -1,0 +1,12 @@
+@startuml
+class TargetHub {
+    - WorkerController : IWorkerController <<get>> <<set>>
+    - DataStore : IDataStore <<get>> <<set>>
+    - TargetHubActions : IHubActions<Target> <<get>> <<set>>
+    + TargetHub(workerController:IWorkerController, dataStore:IDataStore, targetHubActions:IHubActions<Target>)
+    + <<async>> <<override>> OnConnectedAsync() : Task
+    + <<async>> AddTarget(target:Target) : Task
+    + <<async>> DumpTarget(dumpTarget:DumpTarget) : Task
+}
+Hub <|-- TargetHub
+@enduml

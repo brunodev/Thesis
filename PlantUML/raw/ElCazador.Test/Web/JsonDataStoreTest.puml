@@ -1,0 +1,16 @@
+@startuml
+class JsonDataStoreTest {
+    - Path : string = @"/Users/elpatron/Documents/Projects/ElCazador/ElCazador.Test"
+    - HostingEnvironmentMock : Mock<IHostingEnvironment>
+    - DataStore : IDataStore
+    + JsonDataStoreTest()
+    Target : Target
+    User : User
+    + TestAdd() : void
+    + TestDelete() : void
+    + TestEdit() : void
+    + TestJsonIntegrity() : void
+    + Dispose() : void
+}
+IDisposable <|-- JsonDataStoreTest
+@enduml

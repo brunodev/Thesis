@@ -1,0 +1,20 @@
+@startuml
+class SpooferCore {
+    - Settings : SpooferSettings <<get>> <<set>>
+    - UDP137Socket : Models.SocketType
+    - UDP5355Socket : Models.SocketType
+    - Spoofers : IDictionary<Models.SocketType, List<ISpoofer>> <<get>> <<set>>
+    - SocketTypes : IList<Models.SocketType> <<get>> <<set>>
+    + IsEnabled : bool <<get>>
+    <<internal>> SpooferCore(controller:IWorkerController, settings:SpooferSettings)
+    + <<async>> Run() : Task
+    + <<async>> Stop() : Task
+    - AddSpoofer(socketType:Models.SocketType, spoofer:ISpoofer, run:bool) : void
+    - <<async>> StartSocket(socketType:Models.SocketType) : Task
+    - <<async>> StartSockets() : Task
+    - <<async>> BeginReceiveSockets() : Task
+    + <<async>> ReadCallback(result:IAsyncResult, socketType:Models.SocketType) : Task
+}
+BaseModule <|-- SpooferCore
+IPersistantModule <|-- SpooferCore
+@enduml

@@ -1,0 +1,60 @@
+@startuml
+class SMB2NegotiateResponse {
+    - Header : IEnumerable<byte> <<get>> <<set>>
+    <<internal>> SMB2NegotiateResponse(header:IEnumerable<byte>)
+    <<internal>> SMB2NegotiateResponse(header:IEnumerable<byte>, dialect:IEnumerable<byte>)
+    + Build() : byte[]
+    + Len : IEnumerable<byte> <<get>> <<set>>
+    + Signing : IEnumerable<byte> <<get>> <<set>>
+    + Dialect : IEnumerable<byte> <<get>> <<set>>
+    + Reserved : IEnumerable<byte> <<get>> <<set>>
+    + Guid : IEnumerable<byte> <<get>> <<set>>
+    + Capabilities : IEnumerable<byte> <<get>> <<set>>
+    + MaxTransSize : IEnumerable<byte> <<get>> <<set>>
+    + MaxReadSize : IEnumerable<byte> <<get>> <<set>>
+    + MaxWriteSize : IEnumerable<byte> <<get>> <<set>>
+    + SystemTime : IEnumerable<byte> <<get>> <<set>>
+    + BootTime : IEnumerable<byte> <<get>> <<set>>
+    + SecBlobOffSet : IEnumerable<byte> <<get>> <<set>>
+    + SecBlobLen : IEnumerable<byte> <<get>> <<set>>
+    + Reserved2 : IEnumerable<byte> <<get>> <<set>>
+    + InitContextTokenASNId : IEnumerable<byte> <<get>> <<set>>
+    + InitContextTokenASNLen : IEnumerable<byte> <<get>> <<set>>
+    + ThisMechASNId : IEnumerable<byte> <<get>> <<set>>
+    + ThisMechASNLen : IEnumerable<byte> <<get>> <<set>>
+    + ThisMechASNStr : IEnumerable<byte> <<get>> <<set>>
+    + SpNegoTokenASNId : IEnumerable<byte> <<get>> <<set>>
+    + SpNegoTokenASNLen : IEnumerable<byte> <<get>> <<set>>
+    + NegTokenASNId : IEnumerable<byte> <<get>> <<set>>
+    + NegTokenASNLen : IEnumerable<byte> <<get>> <<set>>
+    + NegTokenTag0ASNId : IEnumerable<byte> <<get>> <<set>>
+    + NegTokenTag0ASNLen : IEnumerable<byte> <<get>> <<set>>
+    + NegThisMechASNId : IEnumerable<byte> <<get>> <<set>>
+    + NegThisMechASNLen : IEnumerable<byte> <<get>> <<set>>
+    + NegThisMech1ASNId : IEnumerable<byte> <<get>> <<set>>
+    + NegThisMech1ASNLen : IEnumerable<byte> <<get>> <<set>>
+    + NegThisMech1ASNStr : IEnumerable<byte> <<get>> <<set>>
+    + NegThisMech2ASNId : IEnumerable<byte> <<get>> <<set>>
+    + NegThisMech2ASNLen : IEnumerable<byte> <<get>> <<set>>
+    + NegThisMech2ASNStr : IEnumerable<byte> <<get>> <<set>>
+    + NegThisMech3ASNId : IEnumerable<byte> <<get>> <<set>>
+    + NegThisMech3ASNLen : IEnumerable<byte> <<get>> <<set>>
+    + NegThisMech3ASNStr : IEnumerable<byte> <<get>> <<set>>
+    + NegThisMech4ASNId : IEnumerable<byte> <<get>> <<set>>
+    + NegThisMech4ASNLen : IEnumerable<byte> <<get>> <<set>>
+    + NegThisMech4ASNStr : IEnumerable<byte> <<get>> <<set>>
+    + NegThisMech5ASNId : IEnumerable<byte> <<get>> <<set>>
+    + NegThisMech5ASNLen : IEnumerable<byte> <<get>> <<set>>
+    + NegThisMech5ASNStr : IEnumerable<byte> <<get>> <<set>>
+    + NegTokenTag3ASNId : IEnumerable<byte> <<get>> <<set>>
+    + NegTokenTag3ASNLen : IEnumerable<byte> <<get>> <<set>>
+    + NegHintASNId : IEnumerable<byte> <<get>> <<set>>
+    + NegHintASNLen : IEnumerable<byte> <<get>> <<set>>
+    + NegHintTag0ASNId : IEnumerable<byte> <<get>> <<set>>
+    + NegHintTag0ASNLen : IEnumerable<byte> <<get>> <<set>>
+    + NegHintFinalASNId : IEnumerable<byte> <<get>> <<set>>
+    + NegHintFinalASNLen : IEnumerable<byte> <<get>> <<set>>
+    + NegHintFinalASNStr : IEnumerable<byte> <<get>> <<set>>
+}
+IPacket <|-- SMB2NegotiateResponse
+@enduml

@@ -1,0 +1,14 @@
+@startuml
+class LsassDumpTool {
+    + LsassDumpTool(controller:IWorkerController)
+    + <<async>> Run(target:Target, user:User) : Task
+    - <<async>> RunMimikatz(dumpFilePath:string) : Task
+    - <<async>> ParseMimikatzOutput(output:string) : Task
+    - <<async>> ParseMimikatzLine(line:string) : Task<string>
+    - <<async>> RunProcess(target:Target, user:User, command:string, getArguments:Func<Target, User, string, string>) : Task<bool>
+    - GetClearTextArguments(target:Target, user:User, command:string) : string
+    - GetNTLMArguments(target:Target, user:User, command:string) : string
+}
+BaseModule <|-- LsassDumpTool
+IToolModule <|-- LsassDumpTool
+@enduml

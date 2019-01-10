@@ -1,0 +1,7 @@
+@startuml
+class BaseModule {
+    # Controller : IWorkerController <<get>>
+    + Name : string <<get>>
+    # BaseModule(controller:IWorkerController, name:string)
+}
+@enduml

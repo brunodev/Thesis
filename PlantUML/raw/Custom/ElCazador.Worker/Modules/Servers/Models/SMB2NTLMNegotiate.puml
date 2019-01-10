@@ -1,0 +1,72 @@
+@startuml
+class SMB2NTLMNegotiate {
+    - Header : IEnumerable<byte> <<get>> <<set>>
+    <<internal>> SMB2NTLMNegotiate(header:IEnumerable<byte>, challenge:IEnumerable<byte>)
+    + Build() : byte[]
+    + Len : IEnumerable<byte> <<get>> <<set>>
+    + SessionFlag : IEnumerable<byte> <<get>> <<set>>
+    + SecBlobOffSet : IEnumerable<byte> <<get>> <<set>>
+    + SecBlobLen : IEnumerable<byte> <<get>> <<set>>
+    + ChoiceTagASNId : IEnumerable<byte> <<get>> <<set>>
+    + ChoiceTagASNLenOfLen : IEnumerable<byte> <<get>> <<set>>
+    + ChoiceTagASNIdLen : IEnumerable<byte> <<get>> <<set>>
+    + NegTokenTagASNId : IEnumerable<byte> <<get>> <<set>>
+    + NegTokenTagASNLenOfLen : IEnumerable<byte> <<get>> <<set>>
+    + NegTokenTagASNIdLen : IEnumerable<byte> <<get>> <<set>>
+    + Tag0ASNId : IEnumerable<byte> <<get>> <<set>>
+    + Tag0ASNIdLen : IEnumerable<byte> <<get>> <<set>>
+    + NegoStateASNId : IEnumerable<byte> <<get>> <<set>>
+    + NegoStateASNLen : IEnumerable<byte> <<get>> <<set>>
+    + NegoStateASNValue : IEnumerable<byte> <<get>> <<set>>
+    + Tag1ASNId : IEnumerable<byte> <<get>> <<set>>
+    + Tag1ASNIdLen : IEnumerable<byte> <<get>> <<set>>
+    + Tag1ASNId2 : IEnumerable<byte> <<get>> <<set>>
+    + Tag1ASNId2Len : IEnumerable<byte> <<get>> <<set>>
+    + Tag1ASNId2Str : IEnumerable<byte> <<get>> <<set>>
+    + Tag2ASNId : IEnumerable<byte> <<get>> <<set>>
+    + Tag2ASNIdLenOfLen : IEnumerable<byte> <<get>> <<set>>
+    + Tag2ASNIdLen : IEnumerable<byte> <<get>> <<set>>
+    + Tag3ASNId : IEnumerable<byte> <<get>> <<set>>
+    + Tag3ASNIdLenOfLen : IEnumerable<byte> <<get>> <<set>>
+    + Tag3ASNIdLen : IEnumerable<byte> <<get>> <<set>>
+    + NTLMSSPSignature : IEnumerable<byte> <<get>> <<set>>
+    + NTLMSSPSignatureNull : IEnumerable<byte> <<get>> <<set>>
+    + NTLMSSPMessageType : IEnumerable<byte> <<get>> <<set>>
+    + NTLMSSPNtWorkstationLen : IEnumerable<byte> <<get>> <<set>>
+    + NTLMSSPNtWorkstationMaxLen : IEnumerable<byte> <<get>> <<set>>
+    + NTLMSSPNtWorkstationBuffOffset : IEnumerable<byte> <<get>> <<set>>
+    + NTLMSSPNtNegotiateFlags : IEnumerable<byte> <<get>> <<set>>
+    + NTLMSSPNtServerChallenge : IEnumerable<byte> <<get>> <<set>>
+    + NTLMSSPNtReserved : IEnumerable<byte> <<get>> <<set>>
+    + NTLMSSPNtTargetInfoLen : IEnumerable<byte> <<get>> <<set>>
+    + NTLMSSPNtTargetInfoMaxLen : IEnumerable<byte> <<get>> <<set>>
+    + NTLMSSPNtTargetInfoBuffOffset : IEnumerable<byte> <<get>> <<set>>
+    + NegTokenInitSeqMechMessageVersionHigh : IEnumerable<byte> <<get>> <<set>>
+    + NegTokenInitSeqMechMessageVersionLow : IEnumerable<byte> <<get>> <<set>>
+    + NegTokenInitSeqMechMessageVersionBuilt : IEnumerable<byte> <<get>> <<set>>
+    + NegTokenInitSeqMechMessageVersionReserved : IEnumerable<byte> <<get>> <<set>>
+    + NegTokenInitSeqMechMessageVersionNTLMType : IEnumerable<byte> <<get>> <<set>>
+    + NTLMSSPNtWorkstationName : IEnumerable<byte> <<get>> <<set>>
+    + NTLMSSPNTLMChallengeAVPairsId : IEnumerable<byte> <<get>> <<set>>
+    + NTLMSSPNTLMChallengeAVPairsLen : IEnumerable<byte> <<get>> <<set>>
+    + NTLMSSPNTLMChallengeAVPairsUnicodeStr : IEnumerable<byte> <<get>> <<set>>
+    + NTLMSSPNTLMChallengeAVPairs1Id : IEnumerable<byte> <<get>> <<set>>
+    + NTLMSSPNTLMChallengeAVPairs1Len : IEnumerable<byte> <<get>> <<set>>
+    + NTLMSSPNTLMChallengeAVPairs1UnicodeStr : IEnumerable<byte> <<get>> <<set>>
+    + NTLMSSPNTLMChallengeAVPairs2Id : IEnumerable<byte> <<get>> <<set>>
+    + NTLMSSPNTLMChallengeAVPairs2Len : IEnumerable<byte> <<get>> <<set>>
+    + NTLMSSPNTLMChallengeAVPairs2UnicodeStr : IEnumerable<byte> <<get>> <<set>>
+    + NTLMSSPNTLMChallengeAVPairs3Id : IEnumerable<byte> <<get>> <<set>>
+    + NTLMSSPNTLMChallengeAVPairs3Len : IEnumerable<byte> <<get>> <<set>>
+    + NTLMSSPNTLMChallengeAVPairs3UnicodeStr : IEnumerable<byte> <<get>> <<set>>
+    + NTLMSSPNTLMChallengeAVPairs5Id : IEnumerable<byte> <<get>> <<set>>
+    + NTLMSSPNTLMChallengeAVPairs5Len : IEnumerable<byte> <<get>> <<set>>
+    + NTLMSSPNTLMChallengeAVPairs5UnicodeStr : IEnumerable<byte> <<get>> <<set>>
+    + NTLMSSPNTLMChallengeAVPairs7Id : IEnumerable<byte> <<get>> <<set>>
+    + NTLMSSPNTLMChallengeAVPairs7Len : IEnumerable<byte> <<get>> <<set>>
+    + NTLMSSPNTLMChallengeAVPairs7UnicodeStr : IEnumerable<byte> <<get>> <<set>>
+    + NTLMSSPNTLMChallengeAVPairs6Id : IEnumerable<byte> <<get>> <<set>>
+    + NTLMSSPNTLMChallengeAVPairs6Len : IEnumerable<byte> <<get>> <<set>>
+}
+IPacket <|-- SMB2NTLMNegotiate
+@enduml

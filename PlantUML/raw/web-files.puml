@@ -1,0 +1,19 @@
+@startuml Web
+!include Custom/ElCazador.Web/DataStore/JsonDataStoreObject.puml
+!include Custom/ElCazador.Web/DataStore/JsonDataStore.puml
+!include ElCazador.Worker/DataStore/IDataObject.puml
+!include ElCazador.Worker/DataStore/IDataStoreObject.puml
+!include ElCazador.Worker/Interfaces/IDataStore.puml
+!include ElCazador.Web/Hubs/TargetHub.puml
+!include ElCazador.Web/Hubs/UserHub.puml
+!include ElCazador.Web/Hubs/LogHub.puml
+!include Custom/ElCazador.Web/Worker/WebController.puml
+!include ElCazador.Web/Controllers/HomeController.puml
+!include ElCazador.Web/Hubs/Actions/UserHubActions.puml
+!include ElCazador.Web/Hubs/Actions/TargetHubActions.puml
+!include ElCazador.Web/Hubs/Actions/LogHubActions.puml
+!include Custom/ElCazador.Web/Hubs/Actions/IHubAction.puml
+!include ElCazador.Worker/Interfaces/IWorkerController.puml
+!include ElCazador.Worker/Models/IWorkerSettings.puml
+!include ElCazador.Worker/Models/WorkerSettings.puml
+@enduml

@@ -1,0 +1,9 @@
+@startuml
+class LogHubActions {
+    - LogHubContext : IHubContext<LogHub> <<get>> <<set>>
+    + LogHubActions(logHubContext:IHubContext<LogHub>)
+    + <<async>> Add(logEntry:LogEntry) : Task
+    + <<async>> Edit(logEntry:LogEntry) : Task
+}
+"IHubActions`1" "<LogEntry>" <|-- LogHubActions
+@enduml

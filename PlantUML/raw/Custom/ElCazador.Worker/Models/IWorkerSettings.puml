@@ -1,0 +1,10 @@
+@startuml
+interface IWorkerSettings {
+    IP : IPAddress <<get>>
+    ImpacketExamplesPath : string <<get>>
+    DumpPath : string <<get>>
+    PythonExecutable : string <<get>>
+    MimikatzExecutable : string <<get>>
+    ProcdumpExecutable : string <<get>>
+}
+@enduml

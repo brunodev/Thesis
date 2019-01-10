@@ -1,0 +1,38 @@
+@startuml
+class HttpNTLMPacket {
+    + HttpNTLMPacket()
+    + Build() : byte[]
+    - Signature : byte[] <<get>> <<set>>
+    - SignatureNull : byte[] <<get>> <<set>>
+    - MessageType : byte[] <<get>> <<set>>
+    - TargetNameLen : byte[] <<get>> <<set>>
+    - TargetNameMaxLan : byte[] <<get>> <<set>>
+    - TargetNameOffset : byte[] <<get>> <<set>>
+    - NegoFlags : byte[] <<get>> <<set>>
+    - ServerChallenge : byte[] <<get>> <<set>>
+    - Reserved : byte[] <<get>> <<set>>
+    - TargetInfoLen : byte[] <<get>> <<set>>
+    - TargetInfoMaxLen : byte[] <<get>> <<set>>
+    - TargetInfoOffset : byte[] <<get>> <<set>>
+    - NTLMOsVersion : byte[] <<get>> <<set>>
+    - TargetNameStr : byte[] <<get>> <<set>>
+    - Av1 : byte[] <<get>> <<set>>
+    - Av1Len : byte[] <<get>> <<set>>
+    - Av1Str : byte[] <<get>> <<set>>
+    - Av2 : byte[] <<get>> <<set>>
+    - Av2Len : byte[] <<get>> <<set>>
+    - Av2Str : byte[] <<get>> <<set>>
+    - Av3 : byte[] <<get>> <<set>>
+    - Av3Len : byte[] <<get>> <<set>>
+    - Av3Str : byte[] <<get>> <<set>>
+    - Av4 : byte[] <<get>> <<set>>
+    - Av4Len : byte[] <<get>> <<set>>
+    - Av4Str : byte[] <<get>> <<set>>
+    - Av5 : byte[] <<get>> <<set>>
+    - Av5Len : byte[] <<get>> <<set>>
+    - Av5Str : byte[] <<get>> <<set>>
+    - Av6 : byte[] <<get>> <<set>>
+    - Av6Len : byte[] <<get>> <<set>>
+}
+IPacket <|-- HttpNTLMPacket
+@enduml

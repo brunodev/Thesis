@@ -1,0 +1,26 @@
+@startuml
+class LLMNRPacket {
+    + LLMNRPacket(data:byte[], ip:byte[])
+    + Build() : byte[]
+    - Tid : byte[] <<get>> <<set>>
+    - Flags : byte[] <<get>> <<set>>
+    - Question : byte[] <<get>> <<set>>
+    - AnswerRRS : byte[] <<get>> <<set>>
+    - AuthorityRRS : byte[] <<get>> <<set>>
+    - AdditionalRRS : byte[] <<get>> <<set>>
+    - QuestionNameLen : byte[] <<get>> <<set>>
+    - QuestionName : byte[] <<get>> <<set>>
+    - QuestionNameNull : byte[] <<get>> <<set>>
+    - Type : byte[] <<get>> <<set>>
+    - Class : byte[] <<get>> <<set>>
+    - AnswerNameLen : byte[] <<get>> <<set>>
+    - AnswerName : byte[] <<get>> <<set>>
+    - AnswerNameNull : byte[] <<get>> <<set>>
+    - Type1 : byte[] <<get>> <<set>>
+    - Class1 : byte[] <<get>> <<set>>
+    - TTL : byte[] <<get>> <<set>>
+    - IpLen : byte[] <<get>> <<set>>
+    - Ip : byte[] <<get>> <<set>>
+}
+IPacket <|-- LLMNRPacket
+@enduml

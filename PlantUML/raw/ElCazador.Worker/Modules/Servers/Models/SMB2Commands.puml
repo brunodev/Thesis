@@ -1,0 +1,7 @@
+@startuml
+class SMB2Commands {
+    <<internal>> {static} <<readonly>> Request : byte[]
+    <<internal>> {static} <<readonly>> NegotiateNTLM : byte[]
+    <<internal>> {static} <<readonly>> SMB1NegotiateToSMB2 : byte = 0x72
+}
+@enduml

@@ -1,0 +1,8 @@
+@startuml
+class Startup {
+    + Startup(env:IHostingEnvironment)
+    + Configuration : IConfigurationRoot <<get>>
+    + ConfigureServices(services:IServiceCollection) : void
+    + Configure(app:IApplicationBuilder, env:IHostingEnvironment, loggerFactory:ILoggerFactory) : void
+}
+@enduml

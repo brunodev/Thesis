@@ -1,0 +1,13 @@
+WebController "1" *-- "1" TargetHubActions
+WebController "1" *-- "1" UserHubActions
+WebController "1" *-- "1" LogHubActions
+WebController "1" *-- "1" WorkerSettings
+
+WebController "1" *-- "1" JsonDataStore
+JsonDataStore "0" *-- "1..*" "JsonDataStoreObject<T>"
+"JsonDataStoreObject<T>" "1" *-- "1" EncryptedStringPropertyResolver
+"JsonDataStoreObject<T>" "1" *-- "0..*" IDataObject
+
+TargetHub "1" *-- "1" WebController
+UserHub "1" *-- "1" WebController
+LogHub "1" *-- "1" WebController

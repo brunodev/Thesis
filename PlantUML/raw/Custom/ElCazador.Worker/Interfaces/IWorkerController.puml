@@ -1,0 +1,10 @@
+@startuml
+interface IWorkerController {
+    WorkerSettings : IWorkerSettings <<get>>
+    DataStore : IDataStore <<get>>
+    Add(name:string, entity:T) : Task
+    Log(name:string, value:string, args:object[]) : Task
+    Dump(target:Target, user:User) : Task
+    SynchronizeTool(type:Type, tool:IToolModule) : void
+}
+@enduml

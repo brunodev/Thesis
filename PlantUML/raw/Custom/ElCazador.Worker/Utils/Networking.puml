@@ -1,0 +1,7 @@
+@startuml
+class Networking {
+    - {static} IPv4EndingBytes : byte[][]
+    + {static} GetLocalIPAddress() : IPAddress
+    + {static} IsIPv4(buffer:byte[]) : bool
+}
+@enduml

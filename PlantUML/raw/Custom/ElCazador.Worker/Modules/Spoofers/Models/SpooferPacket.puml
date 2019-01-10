@@ -1,0 +1,6 @@
+@startuml
+class SpooferPacket {
+    + <<const>> BUFFER_SIZE : int = 508
+    + Buffer : byte[] <<get>> <<set>>
+}
+@enduml

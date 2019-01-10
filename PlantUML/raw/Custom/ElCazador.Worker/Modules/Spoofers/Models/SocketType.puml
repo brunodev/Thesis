@@ -1,0 +1,13 @@
+@startuml
+class SocketType {
+    <<internal>> Name : string <<get>> <<set>>
+    <<internal>> Type : Sockets <<get>> <<set>>
+    <<internal>> ProtocolType : ProtocolType <<get>> <<set>>
+    <<internal>> Port : int <<get>> <<set>>
+    <<internal>> IPEndPoint : EndPoint
+    <<internal>> Socket : Socket <<get>> <<set>>
+    <<internal>> MulticastAddress : IPAddress <<get>> <<set>>
+    + Equals(other:SocketType) : bool
+}
+"IEquatable`1" "<SocketType>" <|-- SocketType
+@enduml

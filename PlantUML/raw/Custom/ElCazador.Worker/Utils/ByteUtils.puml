@@ -1,0 +1,9 @@
+@startuml
+class ByteUtils <<static>> {
+    + {static} TakeLast(source:IEnumerable<T>, N:int) : IEnumerable<T>
+    + {static} Combine(source:IEnumerable<byte[]>) : byte[]
+    + {static} IntToLittleEndian(value:int) : byte[]
+    + {static} IntToBigEndian(value:int) : byte[]
+    + {static} IntToShortLittleEndian(value:int) : byte[]
+}
+@enduml

@@ -1,0 +1,7 @@
+@startuml
+class SpooferSettings {
+    <<internal>> NBNS : bool <<get>> <<set>> = true
+    <<internal>> LLMNR : bool <<get>> <<set>> = true
+    <<internal>> Inspect : bool <<get>> <<set>> = false
+}
+@enduml

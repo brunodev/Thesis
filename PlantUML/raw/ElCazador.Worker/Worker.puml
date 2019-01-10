@@ -1,0 +1,15 @@
+@startuml
+class Worker {
+    - {static} Hashes : IDictionary<string, User> <<get>> <<set>>
+    - Modules : IDictionary<Type, IModule> <<get>> <<set>>
+    - ModuleThreads : IList<Thread> <<get>> <<set>>
+    - Controller : IWorkerController <<get>> <<set>>
+    + Worker(controller:IWorkerController)
+    - RegisterModules() : void
+    + <<async>> RunTool(type:Type, target:Target, user:User) : Task
+    + <<async>> StartAsync(cancellationToken:CancellationToken) : Task
+    + <<async>> StopAsync(cancellationToken:CancellationToken) : Task
+    + {static} ByteArrayToString(ba:byte[]) : string
+}
+IHostedService <|-- Worker
+@enduml

@@ -1,0 +1,7 @@
+@startuml
+class WorkerTest {
+    - WorkerControllerMock : Mock<IWorkerController>
+    + WorkerTest()
+    + TestLsassDump() : void
+}
+@enduml

@@ -1,0 +1,22 @@
+@startuml
+class SMB2Header {
+    + SMB2Header(command:IEnumerable<byte>)
+    + SMB2Header(command:IEnumerable<byte>, messageID:IEnumerable<byte>, creditCharge:IEnumerable<byte>, credits:IEnumerable<byte>, processID:IEnumerable<byte>)
+    + SMB2Header(command:IEnumerable<byte>, messageID:IEnumerable<byte>, creditCharge:IEnumerable<byte>, credits:IEnumerable<byte>, processID:IEnumerable<byte>, sessionID:IEnumerable<byte>, ntStatus:IEnumerable<byte>)
+    + Build() : byte[]
+    + ProtocolID : IEnumerable<byte> <<get>> <<set>>
+    + Length : IEnumerable<byte> <<get>> <<set>>
+    + CreditCharge : IEnumerable<byte> <<get>> <<set>>
+    + NTStatus : IEnumerable<byte> <<get>> <<set>>
+    + Command : IEnumerable<byte> <<get>> <<set>>
+    + Credits : IEnumerable<byte> <<get>> <<set>>
+    + Flags : IEnumerable<byte> <<get>> <<set>>
+    + NextCommand : IEnumerable<byte> <<get>> <<set>>
+    + MessageID : IEnumerable<byte> <<get>> <<set>>
+    + ProcessID : IEnumerable<byte> <<get>> <<set>>
+    + TreeID : IEnumerable<byte> <<get>> <<set>>
+    + SessionID : IEnumerable<byte> <<get>> <<set>>
+    + Signature : IEnumerable<byte> <<get>> <<set>>
+}
+IPacket <|-- SMB2Header
+@enduml

@@ -1,0 +1,12 @@
+@startuml
+class Target {
+    + Target()
+    + Key : object <<get>>
+    + Hostname : string <<get>> <<set>>
+    + IP : string <<get>> <<set>>
+    + Dumped : bool <<get>> <<set>>
+    + DumpedTimestamp : DateTime <<get>> <<set>>
+    + Timestamp : DateTime <<get>> <<set>>
+}
+IDataObject <|-- Target
+@enduml

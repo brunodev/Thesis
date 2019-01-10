@@ -1,0 +1,20 @@
+\documentclass{article}
+\usepackage{import}
+\subimport{../../../}{preamble.tex}
+\standalonetrue
+\begin{document}
+\begin{figure}[H]
+    \centering
+    \begin{sequencediagram}
+        \newthread{A}{Controller}{}
+        \newinst[1]{B}{Worker}{}
+        \newinst[1]{C}{Third party program}{}
+        \begin{call}{A}{Call()}{B}{}
+            \begin{call}{B}{Call()}{C}{}
+            \end{call}
+        \end{call}
+    \end{sequencediagram}
+    \caption{Test figure}
+    \label{fig:test-figure}
+\end{figure}
+\end{document}

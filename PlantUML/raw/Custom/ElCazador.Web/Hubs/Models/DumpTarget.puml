@@ -1,0 +1,6 @@
+@startuml
+class DumpTarget {
+    + UserKey : string <<get>> <<set>>
+    + TargetKey : string <<get>> <<set>>
+}
+@enduml

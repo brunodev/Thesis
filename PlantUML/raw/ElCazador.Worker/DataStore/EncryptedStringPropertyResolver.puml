@@ -1,0 +1,20 @@
+@startuml
+class JsonEncryptAttribute {
+}
+class EncryptedStringPropertyResolver {
+    - encryptionKeyBytes : byte[]
+    + EncryptedStringPropertyResolver(encryptionKey:string)
+    # <<override>> CreateProperties(type:Type, memberSerialization:MemberSerialization) : IList<JsonProperty>
+}
+class EncryptedStringValueProvider {
+    targetProperty : PropertyInfo
+    - encryptionKey : byte[]
+    + EncryptedStringValueProvider(targetProperty:PropertyInfo, encryptionKey:byte[])
+    + GetValue(target:object) : object
+    + SetValue(target:object, value:object) : void
+}
+IValueProvider <|-- EncryptedStringValueProvider
+EncryptedStringPropertyResolver +-- EncryptedStringValueProvider
+Attribute <|-- JsonEncryptAttribute
+DefaultContractResolver <|-- EncryptedStringPropertyResolver
+@enduml

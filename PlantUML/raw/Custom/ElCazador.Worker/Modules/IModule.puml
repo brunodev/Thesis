@@ -1,0 +1,5 @@
+@startuml
+interface IModule {
+    Name : string <<get>>
+}
+@enduml

@@ -1,0 +1,9 @@
+@startuml
+class JsonDataStore {
+    - Stores : ConcurrentDictionary<Type, object> <<get>> <<set>>
+    - HostingEnvironment : IHostingEnvironment <<get>> <<set>>
+    + JsonDataStore(hostingEnvironment:IHostingEnvironment)
+    + Get() : IDataStoreObject<T>
+}
+IDataStore <|-- JsonDataStore
+@enduml

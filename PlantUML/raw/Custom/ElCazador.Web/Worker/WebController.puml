@@ -1,0 +1,21 @@
+@startuml
+class WebController {
+    + WorkerSettings : IWorkerSettings <<get>> <<set>>
+    + DataStore : IDataStore <<get>> <<set>>
+    - TargetHubActions : IHubActions<Target> <<get>> <<set>>
+    - UserHubActions : IHubActions<User> <<get>> <<set>>
+    - LogHubActions : IHubActions<LogEntry> <<get>> <<set>>
+    - Tools : IDictionary<Type, IToolModule> <<get>> <<set>>
+    + WebController(dataStore:IDataStore, workerSettings:IWorkerSettings, targetHubActions:IHubActions<Target>, 
+    userHubActions:IHubActions<User>, logHubActions:IHubActions<LogEntry>)
+    + <<async>> Add(name:string, entity:T) : Task
+    + <<async>> Log(name:string, value:string, args:object[]) : Task
+    + <<async>> Dump(target:Target, user:User) : Task
+    + SynchronizeTool(type:Type, tool:IToolModule) : void
+    - <<async>> Add(name:string, logEntry:LogEntry) : Task
+    - <<async>> Add(name:string, user:User) : Task
+    - <<async>> Add(name:string, target:Target) : Task
+    - <<async>> Add(entity:T, hub:IHubActions<T>) : Task
+}
+IWorkerController <|-- WebController
+@enduml

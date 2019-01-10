@@ -1,0 +1,9 @@
+@startuml
+class TargetHubActions {
+    - TargetHubContext : IHubContext<TargetHub> <<get>> <<set>>
+    + TargetHubActions(targetHubContext:IHubContext<TargetHub>)
+    + <<async>> Add(target:Target) : Task
+    + <<async>> Edit(target:Target) : Task
+}
+"IHubActions`1" "<Target>" <|-- TargetHubActions
+@enduml

@@ -1,0 +1,11 @@
+@startuml
+class TerminalController {
+    + DataStore : IDataStore <<get>>
+    + WorkerSettings : IWorkerSettings <<get>>
+    + TerminalController(workerSettings:WorkerSettings)
+    + <<async>> Add(name:string, entity:T) : Task
+    + <<async>> Log(name:string, value:string, args:object[]) : Task
+    + <<async>> Output(name:string, user:User) : Task
+}
+IWorkerController <|-- TerminalController
+@enduml

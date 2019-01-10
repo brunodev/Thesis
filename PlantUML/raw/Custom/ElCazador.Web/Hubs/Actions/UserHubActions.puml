@@ -1,0 +1,9 @@
+@startuml
+class UserHubActions {
+    - UserHubContext : IHubContext<UserHub> <<get>> <<set>>
+    + UserHubActions(userHubContext:IHubContext<UserHub>)
+    + <<async>> Add(user:User) : Task
+    + <<async>> Edit(user:User) : Task
+}
+"IHubActions`1" "<User>" <|-- UserHubActions
+@enduml

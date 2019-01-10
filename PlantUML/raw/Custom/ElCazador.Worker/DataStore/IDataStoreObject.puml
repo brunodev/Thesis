@@ -1,0 +1,9 @@
+@startuml
+interface "IDataStoreObject`1"<T> {
+    All : IEnumerable<T> <<get>>
+    Get(key:object) : T
+    Add(entity:T) : Task
+    Delete(entity:T) : Task
+    Edit(entity:T) : Task
+}
+@enduml

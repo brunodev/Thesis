@@ -1,0 +1,11 @@
+@startuml
+class NBNSSpoofer {
+    # <<override>> Protocol : string <<get>>
+    + NBNSSpoofer(controller:IWorkerController, settings:SpooferSettings, socketType:Models.SocketType)
+    # <<override>> GetPacket(data:byte[], ip:byte[]) : IPacket
+    # <<override>> CheckRules(state:SpooferPacket) : bool
+    # <<override>> GetName(state:SpooferPacket) : string
+    - {static} DecodeName(bytes:byte[]) : string
+}
+BaseSpoofer <|-- NBNSSpoofer
+@enduml

@@ -1,0 +1,20 @@
+@startuml
+class NBNSPacket {
+    + NBNSPacket(data:byte[], ip:byte[])
+    + Build() : byte[]
+    - Tid : byte[] <<get>> <<set>>
+    - Flags : byte[] <<get>> <<set>>
+    - Question : byte[] <<get>> <<set>>
+    - AnswerRRS : byte[] <<get>> <<set>>
+    - AuthorityRRS : byte[] <<get>> <<set>>
+    - AdditionalRRS : byte[] <<get>> <<set>>
+    - NbtName : byte[] <<get>> <<set>>
+    - Type : byte[] <<get>> <<set>>
+    - Classy : byte[] <<get>> <<set>>
+    - TTL : byte[] <<get>> <<set>>
+    - Len : byte[] <<get>> <<set>>
+    - Flags1 : byte[] <<get>> <<set>>
+    - Ip : byte[] <<get>> <<set>>
+}
+IPacket <|-- NBNSPacket
+@enduml

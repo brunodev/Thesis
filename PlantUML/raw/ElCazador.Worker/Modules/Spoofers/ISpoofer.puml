@@ -1,0 +1,7 @@
+@startuml
+interface ISpoofer {
+    HandlePacket(state:SpooferPacket) : Task
+    HandleRequestPacket(state:SpooferPacket) : Task
+    SpoofPacket(state:SpooferPacket) : Task
+}
+@enduml
