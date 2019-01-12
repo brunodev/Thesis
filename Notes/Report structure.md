@@ -44,6 +44,9 @@ Leave out nbns and llmnr in the problem background??
 
 ### Considerations
 * Modular
+    * Common interface
+    * Adding new modules easy
+    * Types of modules
 * Ease of use
 * Traceability
 

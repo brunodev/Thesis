@@ -15,7 +15,7 @@ To understand how spoofing of \gls{llmnr} and \gls{nbns} works we first need to 
 	\item If enabled, Name resolution is done (\gls{llmnr} and \gls{nbns})
 \end{enumerate}
 
-This is illustrated on figure \ref{fig:host-resolution-sequence-and-spoofing} where it is also illustrated how spoofing fits into the sequence. As it is shown, the Attacker will listen to multicast packets sent on the local subnet and answer to any Name Resolution packets. If successful, the \emph{Client} will register \emph{Server1} to have the IP address of \emph{Attacker}, and thereby sending all packets intended for \emph{Server1} to \emph{Attacker}.
+This is illustrated on figure \ref{fig:host-resolution-sequence-and-spoofing} where it is also illustrated how spoofing fits into the sequence. As it is shown, the Attacker will listen to multicast packets sent on the local subnet and answer to any Name Resolution packets. If the packets sent are well-formed and conform to the standards of the protocol, the \emph{Client} will register \emph{Server1} to have the IP address of \emph{Attacker}, and thereby sending all packets intended for \emph{Server1} to \emph{Attacker}.
 
 \begin{figure}[!ht]
 	\centering

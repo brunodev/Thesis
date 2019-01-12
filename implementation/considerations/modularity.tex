@@ -6,6 +6,69 @@
 
 % sample content
 \subsubsection{Modularity}
+If we look back at section \ref{sec:initial-foothold} and \ref{sec:attack-methods} we can clearly see how a modular approach can be useful in the development of the worker. For example spoofing, services (\gls{smb} and \gls{http}) and \gls{lsass} dumping is one module each. With a common interface \mintinline{csharp}{IModule} that each module needs to implement, we can streamline the modules easily and allow for new ones to be added without much hassle. There also needs to be an easy way to register new modules in the worker, so that extending the functionality is easy.
 
+\paragraph{Common interface} There needs to be a common interface for each module, denoted \mintinline{csharp}{IModule}. This module should only have one field Name, as seen on listing \ref{listing:interface-imodule}, such that a module can be easily identified by its name. This is useful when logging actions made by the different modules.
 
+\begin{listing}[H]
+    \begin{minted}
+        [
+        frame=lines,
+        framesep=2mm,
+        fontsize=\footnotesize,
+        linenos
+        ]
+        {csharp}
+public interface IModule
+{
+    string Name { get; }
+}
+        \end{minted}
+    \caption{Interface IModule}
+    \label{listing:interface-imodule}
+\end{listing}
+
+\paragraph{Type of modules} The analysis done shows us that we both need persistent modules such as spoofing and services, and \enquote{action} modules such as dumping \gls{lsass}. From this we can create two interfaces. \textbf{IPersistentModule} that is supposed to run in the background and \textbf{IActionModule} that is run when the user chooses to run it. The two interfaces can be seen on listing \ref{listing:interface-ipersistentmodule} and \ref{listing:interface-iactionmodule}. All module types needs to implement the IModule interface to make sure implementations hereof conforms to the module interface.
+
+\begin{listing}[H]
+    \begin{minted}
+        [
+        frame=lines,
+        framesep=2mm,
+        fontsize=\footnotesize,
+        linenos
+        ]
+        {csharp}
+public interface IPersistentModule : IModule
+{
+    Task Run();
+    Task Stop();
+    bool IsEnabled { get; }
+}
+        \end{minted}
+    \caption{Interface IPersistentModule}
+    \label{listing:interface-ipersistentmodule}
+\end{listing}
+
+\begin{listing}[H]
+    \begin{minted}
+        [
+        frame=lines,
+        framesep=2mm,
+        fontsize=\footnotesize,
+        linenos
+        ]
+        {csharp}
+public interface IActionModule : IModule
+{
+    Task Run(Target target, User user);
+}
+        \end{minted}
+    \caption{Interface IActionModule}
+    \label{listing:interface-iactionmodule}
+\end{listing}
+
+\paragraph{Adding new modules} Adding new modules should be easy and straight forward. As a solution C\# has features to load external assemblies into the running program\cite{url:considerations:load-assembly-runtime}, but this exposes our application to certain security risks. For example a malicious user could load their own assembly instead of our module, and thereby achieving code execution within our \enquote{domain}. This can be avoided with certifications and validation hereof, but require much stricter control and additional development. Seeing as this is a project where modules are mostly static, ie. they are not added ad hoc, it is not a good solution to the problem.
+\\
+Therefore a not quite optimal solution was chosen where modules are added by hand in the worker in the method \emph{RegisterModules}. So the worker will have the responsibility to register modules and start/stop them. It also has the responsibility to synchronize they action module with the graphical interface through the \emph{IWorkerController}. It is this interface that the graphical interface needs to implement and the interface that permits the graphical interface and the worker to communicate.
 \end{document}

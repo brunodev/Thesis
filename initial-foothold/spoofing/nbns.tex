@@ -14,7 +14,7 @@
 \label{sec:nbns}
 In Windows \gls{nbns} is implemented in the \gls{wins} which is a legacy service used to map host names to IP addresses. In newer versions of Windows it has no use, but it is kept for backward compatibility purposes. The NetBIOS RFC specification, RFC 1001\cite{url:rfc:netbios}, contains much more than Name Resolution, but for spoofing purposes we only need to look at Name Resolution.
 RFC 1002\cite{url:rfc:netbios-technical} contains detailed technical specification as to how Name Resolution is implemented in NetBIOS.\\
-\gls{nbns} has many other features such as Name Registration, Name Refresh etc. but in order to spoof name resolution we need to understand \emph{Name Query Request} packets and respond with \emph{Name Query Response} packets. The format of a \emph{Name Query Request} is specified on figure \ref{fig:nbns-name-query-request}. As it can be seen, only the fields \textbf{NAME\_TRN\_ID} and \textbf{QUESTION\_NAME} are necessary to read in order to generate a valid \emph{Name Query Request}.
+\gls{nbns} has many other features which are unrelated for this project, but in order to spoof name resolution we need to understand \emph{Name Query Request} packets and respond with \emph{Name Query Response} packets. The format of a \emph{Name Query Request} is specified on figure \ref{fig:nbns-name-query-request}. As it can be seen, only the fields \textbf{NAME\_TRN\_ID} and \textbf{QUESTION\_NAME} are necessary to read in order to generate a valid \emph{Name Query Request}.
 
 \subimport{figures/}{nbns-name-query-request.tex}
 
@@ -22,7 +22,7 @@ To send a spoofed response to the \gls{nbns} request we need to reply with a \em
 
 \subimport{figures/}{nbns-name-query-response.tex}
 
-Figure \ref{fig:nbns-request} shows a real request sent from a Windows Server 2016 requesting the host for \textbf{Server1}. The corresponding values of \textbf{NAME\_TRN\_ID} and \textbf{RR\_NAME} is $0xd056$ and FDEFFCFGEFFCDBCACACACACACACACACA respectively. According to the information gained from figure \ref{fig:nbns-name-query-response}, we need to construct a packet with the specified transaction ID and host name. Additionally, we set \textbf{TTL} to $0x000000a5$ (2 minutes and 45 seconds), \textbf{RDLENGTH} to 6 ($0x0006$) and NB\_ADDRESS to our own IP Address 10.211.55.4 ($0x0ad33704$). This results in the packet seen on figure \ref{fig:nbns-response} which is a direct response to \ref{fig:nbns-request} leading to a successful spoof.
+Figure \ref{fig:nbns-request} shows a real request sent from a Windows Server 2016 requesting the host for \textbf{Server1}. The corresponding values of \textbf{NAME\_TRN\_ID} and \textbf{RR\_NAME} is $0xd056$ and FDEFFCFGEFFCDBCACACACACACACACACA respectively. According to the information gained from figure \ref{fig:nbns-name-query-response}, we need to construct a packet with the specified transaction ID and host name. Additionally, we set \textbf{TTL} to $0x000000a5$ (2 minutes and 45 seconds. This is what Windows uses by default), \textbf{RDLENGTH} to 6 ($0x0006$. 2 bytes for \textbf{NB\_FLAGES} and 4 bytes for \textbf{NB\_ADDRESS}) and NB\_ADDRESS to our own IP Address 10.211.55.4 ($0x0ad33704$). This results in the packet seen on figure \ref{fig:nbns-response} which is a direct response to figure \ref{fig:nbns-request},which will result in a successful spoof of the NBNS protocol, such that traffic from \emph{client} intended for \emph{server1} is sent to \emph{attacker}.
 
 \begin{figure}[H]
 	\scriptsize

@@ -7,9 +7,9 @@
 % sample content
 \subsubsection{\glsentryfull{llmnr}}
 \label{sec:llmnr}
-\gls{llmnr} is the newest protocol for name resolution where DNS name resolution is not possible\cite{url:rfc:llmnr}. \gls{llmnr} works in the same way as \gls{nbns} in such that a name query is sent to the link-scope multicast address(es), and a responder can hereafter respond to the packet and claim itself as the host that was requested. The sequence of events with \gls{llmnr} according to RFC 4795\cite{url:rfc:llmnr} is the following
+\gls{llmnr} is the newest protocol for name resolution where DNS name resolution is not possible\cite{url:rfc:llmnr}. \gls{llmnr} works in the same way as \gls{nbns} in such that a name query is sent to the link-scope multicast address(es), and a responder can then respond to the packet and claim itself as the host that was requested. The sequence of events with \gls{llmnr} according to RFC 4795\cite{url:rfc:llmnr} is the following
 \begin{enumerate}
-	\item An \gls{llmnr} sender sends a \gls{llmnr} query to the link-scope multicast address(es) on port 5355. This is a \gls{llmnr} packet containing a Question Section
+	\item An \gls{llmnr} sender sends a \gls{llmnr} query to the link-local scope multicast address(es) on port 5355. This is a \gls{llmnr} packet containing a Question Section
 	\item A responder responds to this query by sending an UDP packet. This is a \gls{llmnr} packet containing a Question Section and a Resource Record
 	\item The sender process the responders packet
 \end{enumerate}
@@ -24,7 +24,7 @@ There exists two different \gls{llmnr} packet types. A \textbf{request} and a \t
 
 \subimport{figures/}{llmnr-packet-specification.tex}
 
-This report will not explain the packet details in full, but will focus on the parts necessary to spoof a \gls{llmnr} response.\\
+This report will not explain the packet details in full\footnote{The header is not explained as all fields contain static values as it can be seen in the specification\cite{url:rfc:llmnr}}, but will focus on the parts necessary to spoof a \gls{llmnr} response.\\
 To answer a \gls{llmnr} packet we need to create a \emph{Resource Record} to match the \emph{Question section} sent out by a client. \emph{Name, Type and Class} should match the request, \emph{TTL} should be set to an arbitrary time in minutes (for example 30 - $0x0000001e$ in bytes), \emph{RDLENGTH} should be 4 ($0x0004$) and \emph{RDATA} should be our own IP Address.
 
 \begin{figure}[H]

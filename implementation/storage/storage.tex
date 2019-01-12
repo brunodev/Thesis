@@ -6,5 +6,12 @@
 
 % sample content
 \subsection{Storage}
-
+As mentioned in section \ref{sec:requirements} (\nameref{sec:requirements}) the data should be saved on disk in the \gls{json} format and have the capability to encrypt individual fields. So this part of the project consists of two different aspects
+\begin{enumerate}
+    \item A \gls{json} serializer
+    \item A way to save the \gls{json} object to disk
+\end{enumerate}
+The .NET standard for \gls{json} serialization is Json.NET from Newtonsoft\cite{url:considerations:newtonsoft}, which will also be used by this project. Newtonsoft has the necessary features to implement encryption of individual fields\footnote{You should never roll your own crypto. Therefore most of this code is taken directly from \url{https://stackoverflow.com/questions/29196809/how-can-i-encrypt-selected-properties-when-serializing-my-objects}, which uses standard encryption algorithms and has been verified by multiple people}
+\\
+\paragraph{Persistent data synchronization to disk}
 \end{document}
