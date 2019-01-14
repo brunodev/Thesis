@@ -1,0 +1,76 @@
+\documentclass{article}
+\usepackage{import}
+\subimport{../../../}{preamble.tex}
+\standalonetrue
+\begin{document}
+% \begin{figure}[H]
+%     \centering
+%     \begin{sequencediagram}
+%         \newthread{IWorkerController}{IWorkerController}{}
+%         \newinst[1]{IDataStore}{IDataStore}{}
+%         \newinst[1]{IHubActions}{IHubActions}{}
+%         \begin{sdblock}{Block}{Add or Log}
+%             \begin{call}{IWorkerController}{Add()}{IDataStore}{}
+%             \end{call}
+
+%             \begin{call}{IWorkerController}{Add()}{IHubActions}{}
+%             \end{call}
+%         \end{sdblock}
+%     \end{sequencediagram}
+%     \caption{Something}
+%     \label{fig:data-flow-sequence-diagram}
+% \end{figure}
+\begin{figure}[H]
+    \centering
+    \begin{sequencediagram}
+        \newthread{IActionModule}{IActionModule}{}
+        \newinst[1]{IWorkerController}{IWorkerController}{}
+        \newinst[1]{IDataStore}{IDataStore}{}
+        \newinst[1]{IHubActions}{IHubActions}{}
+
+        % Run
+        \begin{sdblock}{Block}{Run}
+            % Log
+            \begin{sdblock}{Log}{Log action start}
+                \begin{call}{IActionModule}{Log()}{IWorkerController}{}
+                    \begin{call}{IWorkerController}{Add()}{IDataStore}{}
+                    \end{call}
+        
+                    \begin{call}{IWorkerController}{Add()}{IHubActions}{}
+                    \end{call}
+                \end{call}
+
+            \end{sdblock}
+
+            \begin{sdblock}{Add}{Add new user}
+                \begin{call}{IActionModule}{Add()}{IWorkerController}{}
+                    \begin{call}{IWorkerController}{Add()}{IDataStore}{}
+                    \end{call}
+        
+                    \begin{call}{IWorkerController}{Add()}{IHubActions}{}
+                    \end{call}
+                \end{call}
+
+            \end{sdblock}
+        \end{sdblock}
+
+        % \begin{call}{IWorker}{Call()}{IWorkerController}{}
+        %     \begin{call}{IWorkerController}{Call()}{IActionModule}{}
+        %     \end{call}
+        % \end{call}
+    \end{sequencediagram}
+
+    % \begin{sequencediagram}
+    %     \newthread{IWorkerController}{IWorkerController}{}
+    %     \newinst[1]{IWorker}{IWorker}{}
+    %     \newinst[1]{IActionModule}{IActionModule}{}
+    %     \begin{call}{IWorkerController}{Call()}{IWorker}{}
+    %         \begin{call}{IWorker}{Call()}{IActionModule}{}
+    %         \end{call}
+    %     \end{call}
+    % \end{sequencediagram}
+    \caption{Interaction between IWorkerController and a }
+    \label{fig:execution-sequence-diagram}
+\end{figure}
+\footnotetext{RunProcess is actually run thrice due to limitations of WMIExec only allowing one command to be executed per execution}
+\end{document}

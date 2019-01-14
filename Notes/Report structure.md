@@ -48,7 +48,12 @@ Leave out nbns and llmnr in the problem background??
     * Adding new modules easy
     * Types of modules
 * Ease of use
-* Traceability
+* Storage
+    * Efficiency, have to sync all nodes
+    * I/O considerations
+        * Saving is long, still need to access/modify data
+    * Scaling
+    * Testing
 
 ### Final product
 * Structure diagrams

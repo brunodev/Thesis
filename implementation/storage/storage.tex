@@ -13,5 +13,29 @@ As mentioned in section \ref{sec:requirements} (\nameref{sec:requirements}) the 
 \end{enumerate}
 The .NET standard for \gls{json} serialization is Json.NET from Newtonsoft\cite{url:considerations:newtonsoft}, which will also be used by this project. Newtonsoft has the necessary features to implement encryption of individual fields\footnote{You should never roll your own crypto. Therefore most of this code is taken directly from \url{https://stackoverflow.com/questions/29196809/how-can-i-encrypt-selected-properties-when-serializing-my-objects}, which uses standard encryption algorithms and has been verified by multiple people}
 \\
-\paragraph{Persistent data synchronization to disk}
+\subsubsection{Efficient persistent \gls{json} data storage}
+When saving data to \gls{json} in C\#, you basically convert a C\# object into its corresponding \gls{json} structure, which is called serializing. The problem with this is, that you cannot serialize parts of an object. For example if one serialize a list of strings, and then decide to change on of the strings one cannot simply change part of the \gls{json} object. In that case you would have to serialize the whole list to a \gls{json} structure once again. This can lead to certain bottlenecks when dealing with data that updates often. The implementation seeks to overcome this hurdle by having two layers of storage consisting of both a volatile in-memory storage and a persistent disk storage.
+\\
+When dealing with a highly threaded program with large amounts of \gls{io}, concurrency is very important. When the process of serializing an object before saving it to disk is also a time consuming process, certain aspects of the saving logic needs to be optimized. For this project a custom \gls{json} storage provider was implemented with the following things in mind.
+
+\begin{itemize}
+    \item The storage provider is implemented using \gls{idd}, to allow for other storage methods than \gls{json} like databases, in-memory databases or similar.
+    \item Each object is mapped to one datastore which is mapped to one file. For example the object User is mapped to the file User.json
+    \item All \gls{io} is firstly done directly in memory so latency is kept at minimum. Every memory action is then synched to the corresponding data file on disk in a separate \enquote{commit} thread.
+    \item Semaphore locks are implemented such that only one thread can access the underlying file at a time
+    \item The file itself is never locked, unless written to, to allow manual editing and concurrent reads.
+    \item Singleton pattern is implemented to make sure that there is never registered more than one datastore for each object.
+    \begin{itemize}
+        \item The singleton pattern is implemented using the \mintinline{csharp}{System.Collections.Concurrent.ConcurrentDictionary} to ensure it is thread-safe
+    \end{itemize}
+    \item A \mintinline{csharp}{System.ComponentModel.FileSystemWatcher} is started for every datastore to synchronize manual changes done to the files
+\end{itemize}
+
+If we look at the class diagrams from appendix \ref{sec:appendix:web-class-diagram} (\nameref{sec:appendix:web-class-diagram}) and \ref{sec:appendix:data-objects-class-diagram} (\nameref{sec:appendix:data-objects-class-diagram}) we can see how this is all combined with the implementation of \mintinline{csharp}{JsonDataStore} and \mintinline{csharp}{JsonDataStoreObject<T>}. 
+
+\paragraph{JsonDataStore} implements the \mintinline{csharp}{IDataStore} interface and handles the registration of stores and allows the code to get already registered stores.
+\paragraph{JsonDataStoreObject<T>} implements the \mintinline{csharp}{IDataStoreObject} interface with the generic parameter T which is a \mintinline{csharp}{IDataObject}. All data objects implement the interface \mintinline{csharp}{IDataObject}. This class also contains all the logic for saving to files/fetching from files and handle the in-memory mapping of the file.
+\paragraph{User} is a data object containing username, password, domain, timestamp, passwordtype and hash, where password and hash is encrypted when saved on disk.
+\paragraph{Target} is a data object containing hostname, ip, dumped boolean, dumpedTimestamp and added timestamp.
+\paragraph{LogEntry} is a data object containing timestamp, name, message and parameters. It also contains a formatted message and a timestamp string for easier formatting when shown in the graphical interface.
 \end{document}

@@ -1,0 +1,6 @@
+@startuml DatastoreObjects
+!include ElCazador.Worker/Models/LogEntry.puml
+!include ElCazador.Worker/Models/User.puml
+!include ElCazador.Worker/Models/Target.puml
+!include Elcazador.Worker/DataStore/IDataObject.puml
+@enduml

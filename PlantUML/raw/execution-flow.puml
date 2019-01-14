@@ -1,0 +1,13 @@
+@startuml
+
+skinparam guillemet false
+participant WebController << IWorkerController >>
+participant Controller << IWorker >>
+
+activate WebController
+activate Controller
+
+WebController->Controller: DoSomething()
+Controller-->WebController: DoSomething()
+
+@enduml
