@@ -6,8 +6,13 @@
 
 % sample content
 \subsection{Execution flow}
-To get a better overview of how the software itself is structured one can look at the sequence diagram on figure \ref{fig:execution-sequence-diagram} showing the registration of the \gls{lsass} dump tool and what happens when it is run.
+To get a better overview of how the software itself is structured one can look at the sequence diagram on figure \ref{fig:startasync-sequence-diagram} showing the implementation \mintinline{csharp}{Microsoft.Extensions.Hosting.IHostedService.StartAsync}. The \mintinline{csharp}{Microsoft.Extensions.Hosting.IHostedService} interface is the default way of running background tasks in .NET Core\cite{url:implementation:microsoft:hosted-service}. In this project the spoofers and the services needs to run as a background task as they need to listen for network requests separately from the rest.
 
-\subimport{figures/}{lsass-tool-run-sequence-diagram.tex}
+\subimport{figures/}{startasync-sequence-diagram.tex}
+
+When starting the background tasks the logic is split into two parts, one for persistent modules and one for action modules. On persistent modules a thread is spun up and the \mintinline{csharp}{Run()} method is executed in that thread. This gives the worker, not the module, control over the thread and can stop it when needed. When persistent modules are started a log message is sent from the \mintinline{csharp}{Worker} to the registered \mintinline{csharp}{IWorkerController} which then first hands it to the datastore for persistent storage and thereafter adds it to the designated hub. Currently three hub exists, UserHub, LogEntryHub and TargetHub.
+\\\\
+Action modules are special in the way that they need to be run on demand and not as a background task. Therefore the \mintinline{csharp}{Worker} needs a way to tell the \mintinline{csharp}{IWorkerController} which actions exists. This is done using the \mintinline{csharp}{SynchronizeTool()} method which should be implemented in the implementation of \mintinline{csharp}{IWorkerController}.
+
 
 \end{document}

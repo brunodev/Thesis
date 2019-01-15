@@ -136,6 +136,13 @@ Vejledt af Henrik Tange\\
 \tikzstyle{block} = [rectangle, draw, 
 text width=6em, text centered, minimum height=3em]
 \usepackage{pdfpages}
+\makeatletter
+\newcommand*{\centerfloat}{%
+  \parindent \z@
+  \leftskip \z@ \@plus 1fil \@minus \textwidth
+  \rightskip\leftskip
+  \parfillskip \z@skip}
+\makeatother
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Table and tabular

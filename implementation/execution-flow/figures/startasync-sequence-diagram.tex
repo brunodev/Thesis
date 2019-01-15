@@ -1,0 +1,56 @@
+\documentclass{article}
+\usepackage{import}
+\subimport{../../../}{preamble.tex}
+\standalonetrue
+\begin{document}
+% \begin{figure}[H]
+%     \centering
+%     \begin{sequencediagram}
+%         \newthread{IWorkerController}{IWorkerController}{}
+%         \newinst[1]{IDataStore}{IDataStore}{}
+%         \newinst[1]{IHubActions}{IHubActions}{}
+%         \begin{sdblock}{Block}{Add or Log}
+%             \begin{call}{IWorkerController}{Add()}{IDataStore}{}
+%             \end{call}
+
+%             \begin{call}{IWorkerController}{Add()}{IHubActions}{}
+%             \end{call}
+%         \end{sdblock}
+%     \end{sequencediagram}
+%     \caption{Something}
+%     \label{fig:data-flow-sequence-diagram}
+% \end{figure}
+\begin{figure}[H]
+    \centerfloat
+    \begin{sequencediagram}
+        \newthread{IWorker}{IWorker}{}
+        \newinst[1]{IModule}{IModule}{}
+        \newinst[1]{IWorkerController}{IWorkerController}{}
+        \newinst[1]{IDataStore}{IDataStore}{}
+        \newinst[1]{IHubActions}{IHubActions}{}
+
+        \begin{sdblock}{Loop}{Loop over modules}
+
+            \begin{sdblock}{Condition}{Module is IPersistentModule}
+                \begin{call}{IWorker}{Run()}{IModule}{}
+                \end{call}
+
+                \begin{call}{IWorker}{Log()}{IWorkerController}{}
+                    \begin{call}{IWorkerController}{Add}{IDataStore}{}
+                    \end{call}
+                    \begin{call}{IWorkerController}{Add}{IHubActions}{}
+                    \end{call}
+                \end{call}
+            \end{sdblock}
+
+            \begin{sdblock}{Condition}{Module is IActionModule}
+                \begin{call}{IWorker}{SynchronizeTool()}{IWorkerController}{}
+                \end{call}
+            \end{sdblock}
+        \end{sdblock}
+    \end{sequencediagram}
+
+    \caption{Sequence diagram of the \mintinline{csharp}{Microsoft.Extensions.Hosting.IHostedService.StartAsync} method implemented by \mintinline{csharp}{Worker}}
+    \label{fig:startasync-sequence-diagram}
+\end{figure}
+\end{document}
