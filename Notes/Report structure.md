@@ -5,6 +5,13 @@ Leave out nbns and llmnr in the problem background??
 
 ## Introduction
 * Introduction
+* Pentesting windows domains
+    * Read team, internal pentest etc.
+    * How do we start? Machine on network or similar
+    * Goals
+    * How its usually done
+    * Report, Timeline
+    * Other hurdles
 * Report structure
 ### Exploitation of Active Directory Domains
 
@@ -60,3 +67,4 @@ Leave out nbns and llmnr in the problem background??
 * Workflow diagrams
 
 ## Discussion
+

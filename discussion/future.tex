@@ -1,0 +1,18 @@
+\documentclass{article}
+\usepackage{import}
+\subimport{../}{preamble.tex}
+\standalonetrue
+\begin{document}
+
+% sample content
+\subsection{Future improvements}
+One of the initial thoughts for the project was to create a proper graphical interface that can be used to display data in an intuitive way. This requirement was fulfilled, but it created a lot of hurdles along the way. Late in the project it was realized that a console program would probably have been a better solution for a number of reasons.
+
+\paragraph{Less code} The Vue frontend, even though it is very simple, still contains a lot of code not needed in a text interface.
+
+\paragraph{More intuitive modules} A lot of the control of modules are decided by the web app and not the module itself. For example listing user is handled by the web app and not the module. This is mostly the fault of the Vue frontend, but the rest of the web app also has its limitations. The modules would also be able to expose different methods only for that specific module, and do so in a dynamic way.
+    
+\paragraph{Faster development and less UI testing} Lot of time was spend getting the frontend working correctly and synchronize properly. A full console program could be kept in the same language (C\#) and this increase efficiency tremendously.
+
+\paragraph{Full framework} The goal for this project was not just to implement the current features. The goal was to create a full framework where new functionality can be added. This is why modularity is such an important feature, and might be revamped sometime in the near future.
+\end{document}

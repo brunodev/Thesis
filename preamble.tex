@@ -70,7 +70,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{minted}
 \usemintedstyle{vs}
-\setmintedinline{breaklines, breakafter=.}
+\setmintedinline{breaklines, breakanywhere}
 
 
 
@@ -86,11 +86,13 @@
 
 % \rhead{\includegraphics[scale=0.03]{dtulogo}}
 \cfoot{Page \thepage \ of \pageref{LastPage}}
+% \lhead{Søren Fritzbøger}
+\fancyhead[L]{\rightmark}
 \title{\LARGE Exploiting known vulnerabilities, misconfigurations and weaknesses in native protocols to compromise Windows Active Directory Domains with a focus on traceability and ease of use.}
-\author{Søren Fritzbøger - s153753\\
-Vejledt af Henrik Tange\\
-}
-\date{20. Januar 2019}
+% \author{Søren Fritzbøger - s153753\\
+% Vejledt af Henrik Tange\\
+% }
+% \date{20. Januar 2019}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -172,6 +174,7 @@ text width=6em, text centered, minimum height=3em]
 \DeclareFloatingEnvironment[placement={H},name=List]{customlist}
 
 \usepackage{verbatim}
+\usepackage{alltt}
 \usepackage{pmboxdraw}
 \usepackage{varwidth}
 
