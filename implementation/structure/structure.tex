@@ -6,29 +6,10 @@
 
 % sample content
 \subsection{Code Structure}
-With the considerations from section \ref{sec:considerations} in mind and adhering to the requirements from section \ref{sec:requirements} the structure seen on appendix \ref{sec:appendix:worker-class-diagram} (\nameref{sec:appendix:worker-class-diagram}) and \ref{sec:appendix:web-class-diagram} (\nameref{sec:appendix:web-class-diagram}) is the final structure of the application. Overall the application exists of two distinctive parts, the \mintinline{csharp}{Worker} and the implementation of \mintinline{csharp}{IWorkerController}, \mintinline{csharp}{WebController}. When a \mintinline{csharp}{Worker} is initialized a \mintinline{csharp}{IWorkerController} is passed on as a parameter in the constructor. The project uses the built in version of \gls{di} for ASP.Net Core to achieve inversion of control, such that the \mintinline{csharp}{Worker} can control its \mintinline{csharp}{IWorkerController}. \gls{di} also adheres to the principles of \gls{idd}.
+With the considerations from section \ref{sec:considerations} in mind and adhering to the requirements from section \ref{sec:requirements} the structure seen on appendix \ref{sec:appendix:worker-class-diagram} (\nameref{sec:appendix:worker-class-diagram}) and \ref{sec:appendix:web-class-diagram} (\nameref{sec:appendix:web-class-diagram}) is the final structure of the application. Overall the application exists of two distinctive parts, the \mintinline{csharp}{Worker} and the implementation of \mintinline{csharp}{IWorkerController}, \mintinline{csharp}{WebController}. When a \mintinline{csharp}{Worker} is initialized a \mintinline{csharp}{IWorkerController} is passed on as a parameter in the constructor. The project uses the built in version of \gls{di}\cite{url:implementation:microsoft:dependency-injection} for ASP.Net Core to achieve inversion of control, such that the \mintinline{csharp}{Worker} can control its \mintinline{csharp}{IWorkerController}. \gls{di} also adheres to the principles of \gls{idd}.
 \\\\
-\subsubsection{\mintinline{csharp}{Worker}}
-The primary task of the \mintinline{csharp}{Worker} is to register and handle modules in their lifetime. Two types of module exists right now, but the implementation is structured such that new ones can be added easily.
-
-\paragraph{\mintinline{csharp}{IPersistentModule}} is a module that is meant to run all the time in its own thread. The module lifetime is handled by the \mintinline{csharp}{Worker}, and therefore requires to implement both \mintinline{csharp}{Start} and \mintinline{csharp}{Stop} methods in order to be controlled.
-\\\\
-Persistent modules are then currently split in two in the form of \textbf{spoofers} and \textbf{Servers (or services)}. As the logic for most \textbf{spoofers} are the same, they are all controlled by \mintinline{csharp}{SpooferCore} and inherits from the base class \mintinline{csharp}{BaserSpoofer} to keep redundant code at a minimum. The logic for \textbf{services} vary much though, and therefore they do not inherit from a base class.
-
-\paragraph{\mintinline{csharp}{LLMNRSpoofer} and \mintinline{csharp}{NBNSSpoofer}} is the implementation of the \gls{llmnr} and \gls{nbns} spoofers as analyzed in section \ref{sec:spoofing} (\nameref{sec:spoofing})
-
-\paragraph{\mintinline{csharp}{HTTPServer} and \mintinline{csharp}{SMBServer}} is the implementation of the \gls{http} and \gls{smb} servers/services as analyzed in section \ref{sec:credential-acquiring} (\nameref{sec:credential-acquiring})
-
-\paragraph{\mintinline{csharp}{IActionModule}} is a module that is meant to run on demand, which means that it only implements a \mintinline{csharp}{Run} method from the \mintinline{csharp}{IActionModule} interface. An example of such a module is the \mintinline{csharp}{LsassDumpTool} which is the attack explained in section \ref{sec:remote-access}
-
-
-\subsubsection{\mintinline{csharp}{WebController}} \mintinline{csharp}{WebController} is the implementation of \mintinline{csharp}{IWebController}. The \mintinline{csharp}{Controller}'s job is to handle the actions that the worker generates. For example this is logging or new credentials acquired. It is up to the \mintinline{csharp}{Controller} to make sure that data is saved and displayed properly to the user. This is done to separate the raw business logic from the graphical logic.
-
-\paragraph{Hubs} is, as stated by the SignalR documentation, a high-level pipeline that allows a client and server to call methods on each other\cite{url:implementation:signalr}. Currently three hubs exists, \mintinline{csharp}{UserHub}, \mintinline{csharp}{TargetHub} and \mintinline{csharp}{LogEntryHub}, each corresponding to one type of data. The hubs are connected to by the Vue frontend and handles interaction between the user and the WebController.
-
-\paragraph{HubActions} is a middleware between the \mintinline{csharp}{WebController} and the \mintinline{csharp}{Hubs} and they all implement the interface \mintinline{csharp}{IHubActions<T>} where \mintinline{csharp}{T} is a \mintinline{csharp}{IDataObject}. They are implemented to get a single connection to hubs instead of having the WebController handling Hub connection. Currently three HubActions are implemented, \mintinline{csharp}{UserHubActions}, \mintinline{csharp}{TargetHubActions} and \mintinline{csharp}{LogEntryHubActions}
-
-\paragraph{\mintinline{csharp}{WorkerSettings}} is the implementation of \mintinline{csharp}{IWorkerSettings} to handle all settings for the \mintinline{csharp}{Worker}. The implementation uses the \mintinline{csharp}{Microsoft.Extensions.Configurations} library to load configurations from the \mintinline{text}{appsettings.json} file.
-
+\subimport{}{worker-structure.tex}
+\subimport{}{web-structure.tex}
+\subimport{}{vue-frontend-structure.tex}
 
 \end{document}

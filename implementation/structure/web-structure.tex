@@ -1,0 +1,14 @@
+\documentclass{article}
+\usepackage{import}
+\subimport{../../}{preamble.tex}
+\standalonetrue
+\begin{document}
+
+\subsubsection{\mintinline{csharp}{WebController}} \mintinline{csharp}{WebController} is the implementation of \mintinline{csharp}{IWebController}. The \mintinline{csharp}{Controller}'s job is to handle the actions that the worker generates. For example this is logging or new credentials acquired. It is up to the \mintinline{csharp}{Controller} to make sure that data is saved and displayed properly to the user. This is done to separate the raw business logic from the graphical logic.
+
+\paragraph{Hubs} is, as stated by the SignalR documentation, a high-level pipeline that allows a client and server to call methods on each other\cite{url:implementation:signalr}. Currently three hubs exists, \mintinline{csharp}{UserHub}, \mintinline{csharp}{TargetHub} and \mintinline{csharp}{LogEntryHub}, each corresponding to one type of data. The hubs are connected to by the Vue frontend and handles interaction between the user and the WebController.
+
+\paragraph{HubActions} is a middleware between the \mintinline{csharp}{WebController} and the \mintinline{csharp}{Hubs} and they all implement the interface \mintinline{csharp}{IHubActions<T>} where \mintinline{csharp}{T} is a \mintinline{csharp}{IDataObject}. They are implemented to get a single connection to hubs instead of having the WebController handling Hub connection. Currently three HubActions are implemented, \mintinline{csharp}{UserHubActions}, \mintinline{csharp}{TargetHubActions} and \mintinline{csharp}{LogEntryHubActions}
+
+\paragraph{\mintinline{csharp}{WorkerSettings}} is the implementation of \mintinline{csharp}{IWorkerSettings} to handle all settings for the \mintinline{csharp}{Worker}. The implementation uses the \mintinline{csharp}{Microsoft.Extensions.Configurations} library to load configurations from the \mintinline{text}{appsettings.json} file.
+\end{document}

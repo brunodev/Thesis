@@ -1,0 +1,42 @@
+\documentclass{article}
+\usepackage{import}
+\subimport{../../}{preamble.tex}
+\standalonetrue
+\begin{document}
+
+\subsubsection{Vue JavaScript frontend}
+The frontend is built with the Vue JavaScript framework\cite{url:implementation:vue} and uses the state management library Vuex\cite{url:implementation:vue:vuex} to act as a centralized store for the three data objects (Users, targets and log entries).
+\\
+Vue includes the ability to declare reusable components and this feature was used for each of the data objects, so that each object has its own component that includes both logic and the \gls{html} view itself. Therefore the frontend consists of three components, a Vuex store and a app component to bind it all together.
+
+\paragraph{Vuex store}
+The store contains a dataset for each of the three data objects. Furthermore each object also has a \mintinline{csharp}{isLoading} boolean to show a loading page when data is loading. For each action done to a dataset a mutation method is implemented. An example of an implemented mutation can be seen on listing \ref{listing:edituser-mutation}
+
+\begin{listing}[H]
+    \begin{minted}
+        [
+        frame=lines,
+        framesep=2mm,
+        fontsize=\footnotesize,
+        linenos,
+        breaklines
+        ]
+        {javascript}
+[EDIT_USER](state,user) {
+    var element = state.users.data.find(function (element) {
+        return element.id = user.id;
+    });
+    element.username = user.username;
+    element.hash = user.hash;
+    element.isClearText = user.isClearText;
+    element.hashcatFormat = user.hashcatFormat;
+},
+        \end{minted}
+    \caption{\mintinline{javascript}{EDIT_USER} mutation from the Vuex store}
+    \label{listing:edituser-mutation}
+\end{listing}
+
+\paragraph{Data object components} are all structured in the same way. SignalR requires each hub to have its own connection, so when a component is initialized a connection to the designated hub is started as well. The component then maps the necessary data from the Vuex store to itself. For example the user component will map the Vuex store's user data object and so forth. This ensures that all components always modify and read from the same dataset.
+\\\\
+Additionally, all components have listeners for the currently implemented hub actions such as get and edit, that allows the server and client to synchronize automatically when changes occur.
+\end{document}
