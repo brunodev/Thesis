@@ -6,6 +6,15 @@
 
 % sample content
 \section{Conclusion}
-
+The scope of this project was to find an attack chain that could successfully be implemented in a web app while making sure that the attacks were traceable and the app was easy to use. The implemented web app is proven to work thereby further supporting that the attack chain is viable.
+\\
+\\
+The report concludes that it is possible to spoof the \gls{nbns} and \gls{llmnr} protocols, and doing so can lead to a compromise of domain users hashed credentials by running rogue \gls{smb} and \gls{http} servers. Furthermore, it is shown that once such hashes have been cracked, they can be used for further lateral movement in the network. Using remote access tools and \gls{lsass} dumping, the developed app can successfully extract credentials from other hosts which, in most cases, will eventually lead to a compromise of a Domain Admin account.
+\\
+\\
+The goal of providing the attacker with traceability of actions done has been achieved by providing a full action log with correlated timestamps. Ease of use is first and foremost a personal opinion, but it was a big focus during the design and it is considered as an achieved goal. We can also conclude that the app is modular, although further improvement could be achieved with the use of another frontend such as a text-based on.
+\\
+\\
+All in all the project is concluded as successful and is a viable solution to the stated problem.
 
 \end{document}
