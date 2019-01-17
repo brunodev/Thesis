@@ -7,7 +7,7 @@
 % sample content
 \section{Initial foothold}
 \label{sec:initial-foothold}
-In a Windows Active Directory Domain there are numerous ways of gaining an initial foothold. The following methods are the most used in modern penetration testing of Windows AD environments.
+In a Windows Active Directory Domain there are numerous ways of gaining an initial foothold. The common denominator of all the methods is that they seek to gain valid credentials for the targeted Windows \gls{ad} domain. The following methods are the most used in modern penetration testing of Windows \gls{ad} domains.
 \begin{description}
 	\item[BRUTE] User credential bruteforcing
 	\item[SPRAY] Password spraying
@@ -16,7 +16,7 @@ In a Windows Active Directory Domain there are numerous ways of gaining an initi
 	\item[SPOOF] \gls{nbns} and/or \gls{llmnr} spoofing
 \end{description}
 
-All of the above mentioned methods have their weaknesses and strengths, which should be taken into account when choosing the best method or methods to gain initial foothold in a domain. To make an educated guess of which method(s) to pursue further a comparison between the different methods is needed. Table \ref{tab:initial-foothold-comparison} gives a comparison of the different methods, and shows which weaknesses and strengths each methods possess.
+All of the above mentioned methods have their weaknesses and strengths, which should be taken into account when choosing the best method or methods to gain initial foothold in a domain. To make an educated guess of which method(s) to pursue further a comparison between the different methods is needed. Table \ref{tab:initial-foothold-comparison} gives a comparison of the different methods and shows which weaknesses and strengths each methods possess.
 
 	{
 		\setlength\LTleft{-0.25\textwidth}%
@@ -25,11 +25,11 @@ All of the above mentioned methods have their weaknesses and strengths, which sh
 			\textbf{Is it automatable?}                                       & +              & +              & -             & -                                                                           & +              \\
 			\textbf{Is it fast?}                                              & -              & -              & +             & -                                                                           & -              \\
 			\textbf{Account lockout issues?\cite{url:account-lockout-policy}} & -              & -              & +             & +                                                                           & +              \\
-			\textbf{Communication with critical systems such as a \gls{dc}?}  & -              & -              & +             & +                                                                           & +              \\
+			\textbf{Communication with critical systems such as a \gls{dc}?}  & -              & -              & -             & +                                                                           & +              \\
 			\textbf{Easy to detect?}                                          & -              & -              & +             & +                                                                           & +              \\
 			\textbf{Is it easy to do?}                                        & +              & +              & -             & (+)\footnote{This method can be very time consuming} & +              \\\hline
-			\textbf{Points}                                                   & 2              & 2              & 4             & 3.5                                                                         & 5              \\
-			\caption{Comparison of different methods to gain initial foothold in a Windows AD environment}
+			\textbf{Points}                                                   & 2              & 2              & 3             & 3.5                                                                         & 5              \\
+			\caption{Comparison of different methods to gain initial foothold in a Windows \gls{ad} environment}
 			\label{tab:initial-foothold-comparison}
 		\end{tabularx}
 	}

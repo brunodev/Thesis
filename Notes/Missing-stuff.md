@@ -1,3 +1,5 @@
+* Add not cross platform to flaws, mimikatz
+
 * Reflection
 * Conclusion
 * Abstract

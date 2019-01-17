@@ -6,17 +6,17 @@
 
 % sample content
 
-\subsubsection{\mintinline{csharp}{Worker}}
-The primary task of the \mintinline{csharp}{Worker} is to register and handle modules in their lifetime. Two types of module exists right now, but the implementation is structured such that new ones can be added easily.
+\subsubsection{Worker structure}
+\paragraph{\mintinline{csharp}{Worker}} The primary task of the \mintinline{csharp}{Worker} is to register and handle modules lifetime. Two types of module exists right now, but the implementation is structured such that new ones can be added easily.
 
-\paragraph{\mintinline{csharp}{IPersistentModule}} is a module that is meant to run all the time in its own thread. The module lifetime is handled by the \mintinline{csharp}{Worker}, and therefore requires to implement both \mintinline{csharp}{Start} and \mintinline{csharp}{Stop} methods in order to be controlled.
-\\\\
-Persistent modules are then currently split in two in the form of \textbf{spoofers} and \textbf{Servers (or services)}. As the logic for most \textbf{spoofers} are the same, they are all controlled by \mintinline{csharp}{SpooferCore} and inherits from the base class \mintinline{csharp}{BaserSpoofer} to keep redundant code at a minimum. The logic for \textbf{services} vary much though, and therefore they do not inherit from a base class.
+\paragraph{\mintinline{csharp}{IPersistentModule}} is a module that is meant to run all the time in its own thread. The module lifetime is handled by the \mintinline{csharp}{Worker}, and the interface therefore requires the implementation to implement both \mintinline{csharp}{Start} and \mintinline{csharp}{Stop} methods in order to be controlled by the \mintinline{csharp}{Worker}.
+\\
+Persistent modules are then currently split in two in the form of \textbf{spoofers} and \textbf{servers (or services)}. As the logic for most \textbf{spoofers} are the same, they are all controlled by \mintinline{csharp}{SpooferCore} and inherits from the base class \mintinline{csharp}{BaserSpoofer} to keep redundant code at a minimum. The logic for \textbf{services} vary much though, and therefore they do not inherit from a base class.
+\\
+\mintinline{csharp}{LLMNRSpoofer} and \mintinline{csharp}{NBNSSpoofer} is the implementation of the \gls{llmnr} and \gls{nbns} spoofers as analyzed in section \ref{sec:spoofing} (\nameref{sec:spoofing})
+\\
+\mintinline{csharp}{HTTPServer} and \mintinline{csharp}{SMBServer} is the implementation of the \gls{http} and \gls{smb} servers/services as analyzed in section \ref{sec:credential-acquiring} (\nameref{sec:credential-acquiring})
 
-\paragraph{\mintinline{csharp}{LLMNRSpoofer} and \mintinline{csharp}{NBNSSpoofer}} is the implementation of the \gls{llmnr} and \gls{nbns} spoofers as analyzed in section \ref{sec:spoofing} (\nameref{sec:spoofing})
-
-\paragraph{\mintinline{csharp}{HTTPServer} and \mintinline{csharp}{SMBServer}} is the implementation of the \gls{http} and \gls{smb} servers/services as analyzed in section \ref{sec:credential-acquiring} (\nameref{sec:credential-acquiring})
-
-\paragraph{\mintinline{csharp}{IActionModule}} is a module that is meant to run on demand, which means that it only implements a \mintinline{csharp}{Run} method from the \mintinline{csharp}{IActionModule} interface. An example of such a module is the \mintinline{csharp}{LsassDumpTool} which is the attack explained in section \ref{sec:remote-access}
+\paragraph{\mintinline{csharp}{IActionModule}} is a module that is meant to run on demand, which means that it only requires implementation of a \mintinline{csharp}{Run} method. An example of such a module is the \mintinline{csharp}{LsassDumpTool} which implements the attack explained in section \ref{sec:remote-access} (\nameref{sec:remote-access})
 
 \end{document}

@@ -6,7 +6,7 @@
 
 % sample content
 \subsection{Execution flow}
-To get a better overview of how the software itself is structured one can look at the sequence diagram on figure \ref{fig:startasync-sequence-diagram} showing the implementation \mintinline{csharp}{Microsoft.Extensions.Hosting.IHostedService.StartAsync}. The \mintinline{csharp}{Microsoft.Extensions.Hosting.IHostedService} interface is the default way of running background tasks in .NET Core\cite{url:implementation:microsoft:hosted-service}. In this project the spoofers and the services needs to run as a background task as they need to listen for network requests separately from the rest.
+To get a better overview of how the software itself is structured one can look at the sequence diagram on figure \ref{fig:startasync-sequence-diagram} showing the implementation of \mintinline{csharp}{Microsoft.Extensions.Hosting.IHostedService.StartAsync}. The \mintinline{csharp}{Microsoft.Extensions.Hosting.IHostedService} interface is the default way of running background tasks in .NET Core\cite{url:implementation:microsoft:hosted-service}. In this project the spoofers and the services needs to run as a background task as they need to listen for network requests separately from the rest. As mentioned in section \ref{sec:considerations} (\nameref{sec:considerations}) the \mintinline{csharp}{Worker} handles the lifetime of the modules, and therefore it is the \mintinline{csharp}{Worker} that implements the \mintinline{csharp}{IHostedService} interface.
 
 \subimport{figures/}{startasync-sequence-diagram.tex}
 

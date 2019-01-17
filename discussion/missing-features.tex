@@ -8,9 +8,11 @@
 \subsection{Missing features}
 Although the project works and has implemented all the requirements as stated in \ref{sec:requirements}, it still has some shortcomings.
 
-\paragraph{Deletion of objects} is not yet implemented in the web interface, and therefore this cannot be done. One option is to do it manually by editing the underlying \gls{json} data files.
+\paragraph{Deletion and editing of objects} is not yet implemented in the web interface, and therefore this cannot be done. One option is to do it manually by editing the underlying \gls{json} data files.
 
-\paragraph{Proper thread shutdown} is not implemented on shutdown. When the web app is stopped, the worker does stop the threads, but the underlying listeners for the spoofers will exit with an exception. The spoofers should implement a check for whether or not they should still be running in their \mintinline{csharp}{while} loop to fix this issue.
+\paragraph{Proper thread handling} is not implemented on shutdown. When the web app is stopped, the worker does stop the threads, but the underlying listeners for the spoofers will exit with an exception. The spoofers should implement a check for whether or not they should still be running in their \mintinline{text}{while} loop to fix this issue.
 
-\paragraph{The Encryption key} is hardcoded to \mintinline{text}{kkrjYGSRIvvTyvDTxX@ng8F*F6K@4N 4Rjo9GsRRPR8QwYm2ppwUyTmYbocnoy9vu} as it is right now and this is very bad practice. First of all the key can easily be found by inspecting the binary and furthermore it is difficult to change for each assignment. The optimal solution would be to request it when the application is started and then save it in memory. This will still be vulnerable to memory dump attacks, but you will need to know both the structure of the process memory and what to look for.
+\paragraph{The Encryption key} is hardcoded to \mintinline{text}{kkrjYGSRIvvTyvDTxX@ng8F*F6K@4N 4Rjo9GsRRPR8QwYm2ppwUyTmYbocnoy9vu} as it is right now and this is very bad practice. First of all the key can easily be found by inspecting the binary and furthermore it is difficult to change for each assignment. The optimal solution would be to request it when the application is started and then save it in memory for the remainder of the session. This will still be vulnerable to memory dump attacks, but you will need to know both the structure of the process memory and what to look for.
+
+\paragraph{Cross platform} requirement was not fully met, as the \gls{lsass} dump module depends on Mimikatz which only supports Windows. An option to this is to use the cross platform tool Pypykatz\cite{url:discussion:pypykatz}, but tests have shown that it does not extract all credentials from the memory dump as seen by issue \#12\footnote{https://github.com/skelsec/pypykatz/issues/12}
 \end{document}

@@ -7,10 +7,10 @@
 \subsubsection{Vue JavaScript frontend}
 The frontend is built with the Vue JavaScript framework\cite{url:implementation:vue} and uses the state management library Vuex\cite{url:implementation:vue:vuex} to act as a centralized store for the three data objects (Users, targets and log entries).
 \\
-Vue includes the ability to declare reusable components and this feature was used for each of the data objects, so that each object has its own component that includes both logic and the \gls{html} view itself. Therefore the frontend consists of three components, a Vuex store and a app component to bind it all together.
+Vue includes the ability to declare reusable components and this feature was used for each of the data objects, so that each object has its own component that includes both logic and the \gls{html} view. The frontend consists of three components each representing a data object, a Vuex store and a app component to bind it all together.
 
 \paragraph{Vuex store}
-The store contains a dataset for each of the three data objects. Furthermore each object also has a \mintinline{csharp}{isLoading} boolean to show a loading page when data is loading. For each action done to a dataset a mutation method is implemented. An example of an implemented mutation can be seen on listing \ref{listing:edituser-mutation}
+The store contains a field, \mintinline{csharp}{data}, that contains the dataset for each of the three data objects. Furthermore each object also has a \mintinline{csharp}{isLoading} boolean to show a loading page when data is loading. For each action done to a dataset a mutation method is implemented. An example of an implemented mutation can be seen on listing \ref{listing:edituser-mutation}. Mutations are implemented by the store to ensure that all components modifying a data object do it the same way.
 
 \begin{listing}[H]
     \begin{minted}

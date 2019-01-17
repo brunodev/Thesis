@@ -7,7 +7,7 @@
 % sample content
 \subsection{Spoofing}
 \label{sec:spoofing}
-To understand how spoofing of \gls{llmnr} and \gls{nbns} works we first need to elaborate how spoofing can lead to a credential compromise. To do this we need to understand how name resolution works in Windows, regardless of the protocol used. Windows follows a sequence of steps in order to resolve a host name.\cite{url:microsoft:name-resolution-order} The steps are the following:
+To understand how spoofing of \gls{llmnr} and \gls{nbns} works we first need to elaborate how spoofing can lead to a credential compromise. To do this we need to understand how name resolution works in Windows regardless of the protocol used. Windows follows a sequence of steps in order to resolve a host name.\cite{url:microsoft:name-resolution-order} The steps are the following:
 \begin{enumerate}
 	\item The client checks to see if the name queried is its own
 	\item The client searches local Hosts file
@@ -15,9 +15,9 @@ To understand how spoofing of \gls{llmnr} and \gls{nbns} works we first need to 
 	\item If enabled, Name resolution is done (\gls{llmnr} and \gls{nbns})
 \end{enumerate}
 
-This is illustrated on figure \ref{fig:host-resolution-sequence-and-spoofing} where it is also illustrated how spoofing fits into the sequence. As it is shown, the Attacker will listen to multicast packets sent on the local subnet and answer to any Name Resolution packets. If the packets sent are well-formed and conform to the standards of the protocol, the \emph{Client} will register \emph{Server1} to have the IP address of \emph{Attacker}, and thereby sending all packets intended for \emph{Server1} to \emph{Attacker}.
+This is illustrated on figure \ref{fig:host-resolution-sequence-and-spoofing} where it is also illustrated how spoofing fits into the sequence. As it is shown, the Attacker will listen to multicast packets sent on the local subnet and answer to any Name Resolution packets. If the packets sent are well-formed and conform to the standards of the protocol, the \emph{Client} will register \emph{Server1} to have the IP address of \emph{Attacker}, and thereby sending all traffic intended for \emph{Server1} to \emph{Attacker}.
 
-\begin{figure}[!ht]
+\begin{figure}[H]
 	\centering
 	\begin{tikzpicture}[
 			->, thick,]
@@ -41,8 +41,8 @@ This is illustrated on figure \ref{fig:host-resolution-sequence-and-spoofing} wh
 \end{figure}
 
 In Windows, two different Name Resolution protocols are used and active by default on all modern Windows versions. \gls{llmnr} and \gls{nbns} work side by side, unless specifically turned off, which is not the case by default. In section \ref{sec:llmnr} and \ref{sec:llmnr} the protocols are analyzed in detail and the attacks are described.
-\\
-After successfully spoofing a host name and getting traffic redirected to our machine, we need to be able to use that traffic for a malicious purpose. The most common purpose is to gather credentials from the client by having rouge servers running on the attacker. The technique and methods behind this is explained in section \ref{sec:credential-acquiring}
+\\\\
+After successfully spoofing a hostname and getting traffic redirected to our machine, we need to be able to use that traffic for a malicious purpose. The most common purpose is to gather credentials from the client by having rouge servers running on the attacker. The technique and methods behind this is explained in section \ref{sec:credential-acquiring}
 
 \subimport{}{nbns.tex}
 \subimport{}{llmnr.tex}

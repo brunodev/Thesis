@@ -6,8 +6,9 @@
 
 % sample content
 \subsubsection{Traceability}
-When executing pentests of Windows domains certain documentation is a big part of the assignment. Actions needs to be logged, and after completion a list of servers compromised in order to gain Domain Admin privileges has to be provided in the correct order with timestamps. Even though every action is usually documented thoroughly certain actions can slip and be hard to remember afterward. So therefore the project should strive to document and trace every action made. So whenever a credential is acquired, it should be logged from where it came (\gls{http}, \gls{smb} or \gls{lsass} dump), when it happened and, if applicable, which host it came from.\\
-To accommodate this challenge the program needs to save every action made in a persistent way on the disk. As mentioned in section \ref{sec:requirements} (\nameref{sec:requirements}) this also needs to support encryption of individual fields in order to restrict unauthorized access to confidential data. As the requirements also state, the data must be saved in the form of \gls{json} files on the disk directly, such that third party databases are not needed.
+When executing pentests of Windows domains, documentation is a big part of the assignment. All actions needs to be logged, and after completion a list of servers compromised in order to gain Domain Admin privileges has to be provided in the correct order with timestamps. Even though every action is usually documented thoroughly, certain actions can slip and be hard to remember afterwards. So therefore the project should strive to document and trace every action made. So whenever a credential is acquired, it should be logged from where it came (\gls{http}, \gls{smb} or \gls{lsass} dump), when it happened and, if applicable, which host it came from.
+\\
+To accommodate this challenge the program needs to save every action made in a persistent way the the disk. As mentioned in section \ref{sec:requirements} (\nameref{sec:requirements}) this also needs to support encryption of individual fields in order to restrict unauthorized access to confidential data. As the requirements also state, the data must be saved in the form of \gls{json} files on the disk directly, such that third party databases are not needed.
 %\subimport{}{problem.tex}
 
 \end{document}

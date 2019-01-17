@@ -6,8 +6,7 @@
 
 % sample content
 \subsection{Testing}
-The project has been implemented with a focus on \gls{idd} which makes it much easier to unit test your software by creating mocks of interfaces. Furthermore the \gls{di} pattern ensures that the mocks can be injected into the classes being tested. In this project the unit test revolves around the \mintinline{csharp}{JsonDataStore} as this is one of the most critical places of the project. One such test can be seen on listing \ref{listing:jsondatastore-integrity-test} where the integrity of the data is tested and whether or not the data was saved to the correct file.
-\\\\
+The project has been implemented with a focus on \gls{idd} which makes it much easier to unit test your software by creating mocks of interfaces. Furthermore the \gls{di} pattern ensures that the mocks can be injected into the classes being tested. In this project the unit test revolves around the \mintinline{csharp}{JsonDataStore} as this is perhaps the most critical code of the project. One such test can be seen on listing \ref{listing:jsondatastore-integrity-test} where the integrity of the data is tested and whether or not the data was saved to the correct file.
 \begin{listing}[H]
     \begin{minted}
     [
@@ -33,6 +32,8 @@ public void TestJsonIntegrity()
     \label{listing:jsondatastore-integrity-test}
 \end{listing}
 
-Most of the other testing done for this project consisted of manual testing of the required functionality such as the spoofers and the services. When implementing specifications it can be hard to do unit testing initially, as you need to act on the way the operating system reacts, and not so much on the exact specification. Wireshark\cite{url:implementation:wireshark} was mostly used for this, as it can parse the packets correctly and show when the packets does not adhere to the specification.
+Other than integrity tests, the \mintinline{csharp}{JsonDataStore} was also tested for add, edit and delete functionality, and manually tested for performance and parallelism issues.
+\\\\
+Most of the other testing done for this project consisted of manual testing of the required functionality such as the spoofers and the services. When implementing specifications it can be hard to do unit testing initially, as you need to act on the way the operating system reacts and getting the specification right can sometimes be cumbersome. Wireshark\cite{url:implementation:wireshark} was mostly used for this, as it can parse the packets correctly and show when the packets does not adhere to the specification.
 
 \end{document}

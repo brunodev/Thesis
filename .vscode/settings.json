@@ -21,6 +21,7 @@
         "lsass",
         "newtonsoft",
         "procdump",
+        "pypykatz",
         "rdata",
         "sekurlsa",
         "spoofers",
