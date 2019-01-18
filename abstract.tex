@@ -4,6 +4,9 @@
 \standalonetrue
 \begin{document}
 \begin{abstract}
-    lol
+    When performing penetration tests on Windows Active Directory domains you first need to gain an initial foothold by obtaining valid domain credentials and then escalate your privilege to obtain Domain Administrator privileges.
+    This project presents a full attack chain to first gain initial foothold in the domain, and then escalating privileges to obtain Domain Administrator privileges. It is shown how spoofing name resolution protocols can be used in combination with rogue services to obtain crackable hashes. Furthermore it is shown that remotely dumping process memory will make it possible to extract cached credentials from said memory dump, and that this can be used to escalate privileges to Domain Administrator.
+    \\
+    To further support this claim, the methods are implemented in an easy to use application. The application ensures that every action done is documented and saved in a secure way, such that it can be used for reporting purposes.
 \end{abstract}
 \end{document}  
