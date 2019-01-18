@@ -19,9 +19,9 @@ To really understand exactly what happens and in what order, the following list 
     \item The NetNTLMv2 hash is dumped from the web app and bruteforced using hashcat
     \item The newly acquired clear-text password is added using the web app
     \item A target, \textbf{target1} that \textbf{user1} has access to is added to the target list using the web app
-    \item The target \textbf{target1} is dumped using the web app and all cached credentials is added to the user list.
+    \item \textbf{Target1} is dumped using the web app and all cached credentials are added to the user list.
     \item Step (8) and (9) is then repeated for other targets that any of the users have access to.
-    \item Domain admin credentials acquired on \textbf{targetX} and the stored \gls{json} files will be used to generate a timeline of actions done.
+    \item Domain admin credentials acquired on \textbf{targetX} and the stored \gls{json} files will be used to generate a timeline of the actions described in this list
 \end{enumerate}
 
 If we look closer at the graphical interface of the web app as seen in appendix \ref{appendix:web-ui} (\nameref{appendix:web-ui}) and \ref{appendix:add-user-modal} (\nameref{appendix:add-user-modal}) it is very simple, and has all the necessary features implemented. The log component will contain all actions done, and the user and target components will show current users and targets. Everything is automatically updated using SignalR and all actions done are synchronized both ways.
@@ -30,5 +30,5 @@ In terms of pure functionality, the web app implements the full attack chain dis
 
 \subimport{}{missing-features.tex}
 \subimport{}{future.tex}
-\subimport{}{reflection.tex}
+% \subimport{}{reflection.tex}
 \end{document}

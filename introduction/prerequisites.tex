@@ -3,10 +3,9 @@
     \subimport{../}{preamble.tex}
     \standalonetrue
 \begin{document}
-\subsection{Pentesting Windows Domains}
-When using the word \enquote{pentest} one can easily be confused as this word has multiple definitions and the actual meaning differentiates from company to company. A pentest can both be a full blown Red Team exercise where the attackers has to infiltrate the network using vulnerabilities, phishing campaigns or other methods, a simple vulnerability scan or something completely different. For this project a pentest is defined as, what the author refers to as an internal penetration test, where an attack is simulated by placing an attacker controlled computer on the network. This is done to simulate an attack where a rogue device has been plugged into the network or an employees machine has been compromised, but also to simulate an attack where the attacker does not yet have valid credentials to authenticate to the Windows infrastructure.
-\\
-This is important to remember when reading this report, as this is the initial starting point for this project. Therefore the first action when starting such a pentest is to gain an initial foothold by obtaining valid credentials that can be used for lateral movement
+\subsection{Penetration testing of Windows Domains}
+To fully understand the problem and scope of this project, a clear definition of the term \enquote{penetration test} needs to be established. The meaning of the term penetration test can differ a lot depending on the scope of the assignment. A penetration test can both be scoped as a full blown Red Team exercise where the attackers has to infiltrate the network using vulnerabilities, phishing campaigns or other methods, a simple vulnerability scan with confirmation or something completely different.
 \\\\
-When performing such pentests there is always a list of goals an attacker needs to reach. This can be goals such as accessing a certain database, reading the CEO's emails or similar. Obtaining Domain Admin credentials is usually one of the goals, but even when it's not it's usually still obtained, as a Domain Admin account will, in most cases, give you unlimited access to all resources in the domain.
+In this project the term is defined as an internal penetration test, where a computer is placed on the network. This is done to simulate an attack where a rogue device has been plugged into the network or an employee machine has been compromised, but also to simulate an attack where the attacker does not yet have valid credentials to authenticate to the Windows Domain.
+
 \end{document}

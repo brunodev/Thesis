@@ -5,29 +5,19 @@
 \begin{document}
 \subsection{Problem background}
 \label{sec:problem-background}
-When performing a pentest on Windows Active Directory environments one of the goals is usually to obtain Domain Administrator privileges in the form of a Domain Admin account. There are numerous ways to gain initial foothold in an Active Directory Domain, but the most common one is by exploiting the native protocols \gls{nbns} and \gls{llmnr}\cite{url:zero-to-domain-admin} to gain crackable hashes which can be bruteforced offline.
-Hereafter a number of different techniques and exploits can be used for lateral movement, but it usually consists of dumping cached credentials on domain joined hosts in one way or another.
-\\
-As one can easily figure out this is usually a manual job where many different tools are joined together to produce the right result. This usually means it is a trivial and easy job, which requires a lot of time that can be spent on more advanced tasks. This is often done with tools not written by the pentester themselves, which can pose a security risk as the tools can be backdoored or otherwise have security vulnerabilities.
-\\
-During a pentest it is usually required to be as silent as possible and not trigger any alerts in any \gls{ids}, \gls{siem}, \gls{av} or similar systems. The risk of using publicly available tools is therefore also that the tools are highly likely to trigger unwanted alerts.
-\\
-Another issue of performing pentests is to document and remember the order of tasks that where done. A pentest usually concludes with a report where the steps taken are explained to the customer, and this includes in what order tasks were done and which user credentials were used.
+When performing penetration tests on Windows Active Directory domains, one of the goals is usually to obtain Domain Administrator privileges. The first step towards achieving that goal is to gain an initial foothold by obtaining valid domain credentials. Methods such as phishing, password leaks, bruteforce attacks are just some out of many methods ways to achieve this. After obtaining valid credentials, and thereby gaining an initial foothold, many methods exists to escalate your privileges in the Domain such as dumping cached credentials from hosts or exploiting vulnerabilities.
+\\\\
+To first gain an initial foothold and then escalate your privileges to Domain Administrator privileges is often achieved by using a variety a tools developed. Using these tools can impose a security risk, as the tools are not written by the penetration tester themselves, and therefore the tools can potentially be backdoored or otherwise contain security vulnerabilities.
+\\\\
+A goal of penetration tests is more often than not to be silent and remain undetected by systems such as \gls{ids}, \gls{siem} and \gls{av}. Publicly available tools are detected by such systems and can therefore in some cases not be used.
+\\\\
+A challenge of performing penetration tests is to make sure that every action done is documented thoroughly, as this is needed for the customer report afterwards. In most cases a description of how every goal was achieved is required, and without proper documentation this is an impossible task.
+
 
 \subsection{Problem brief}
-The purpose of this project is to determine whether a proper solution to the problem mentioned in section \ref{sec:problem-background} can be found, and to analyze how such a tool can be developed. The problem is split in two, where the first goal is to gain an initial foothold and the second is to gain Domain Administrator privileges. To accomplish this the many techniques and methods will be discussed and evaluated in comparison to each other, and the most valid solution will be implemented in a piece of software that aims to be easy to use and contain a high level of traceability.
-\\
-The developed piece of software must be able to be easy to use so that an incentive to use it instead of other tools is created. It should be constructed with AV evasion in mind, such that it will not be detected by AVs. Furthermore it must be designed with traceability in mind, such that a clear timeline can be constructed and documented.
-% The purpose of this project is analyze, discuss and implement a solution to the aforementioned problem.
-
-% The project will go over the most common ways to gain initial foothold of a Windows Active Directory Domain, and how native protocols can be abused to gather credentials.
-
-
-
-% The purpose of this project is to show how known vulnerabilities, misconfigurations and weaknesses in native protocols in Windows can be used to compromise an entire Windows Active Directory Domain. To fully understand how this can be achieved the following report will unveil the primary techniques used to compromise a domain. In most cases compromisation of Windows AD Domains requires valid user credentials to gain an initial foothold. These credentials will then be used to pivot between hosts and ultimately lead to a Domain Administrator account.
-% Most of the techniques analyzed in this project are well known and abused in the wild already. However, the goal of this project is to determine whether or not the methods and techniques can be combined in a single easy to use piece of software to fully compromise a Windows Active Directory Domain.
-% \\This project will analyze and exploit numerous ways to gather domain credentials without already having a foothold in the domain. Using the initial foothold, popular attack methods and techniques will be discussed and evaluated in order to show how they can be combined to gain full administrative control over the entire Active Directory Domain.
-% \\
-% There is numerous ways to achieve an user including phishing, password spraying or simply bruteforcing.
-% Windows has a long history of backwards compatibility \footnote{https://rasteri.blogspot.com/2011/03/chain-of-fools-upgrading-through-every.html https://news.ycombinator.com/item?id=13450160} which has led to 
+The purpose of this project is to determine whether a proper solution to the problem mentioned in section \ref{sec:problem-background} can be found. The project will focus on how to most effectively achieve an initial foothold and then analyze how to escalate the privileges from there. The product will be an application where the necessary functionality is implemented, and the application should contain an easy to user interface.
+\\\\
+The application should strive to not generate alerts in any \gls{ids}, \gls{siem} and \gls{av} systems, such that the penetration test can achieve the goal of being silent.
+\\\\
+To accommodate the high level of documentation needed, every action done by the application should be logged and contain full timestamps to achieve full traceability throughout the use of the application. This documentation should be in an easy to read format, such that a timeline can be generated for reporting purposes.
 \end{document}
