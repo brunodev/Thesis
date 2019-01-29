@@ -1,0 +1,28 @@
+\documentclass{article}
+\usepackage{import}
+\subimport{../../../}{preamble.tex}
+\standalonetrue
+\begin{document}
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}[
+			->, thick,]
+		\coordinate (O) at (0,0);
+
+		\node [block] (dnsserver) {DNS Server};
+		\node [block] (client) [below = 4cm of dnsserver] {Client};
+		\node (multicast) [below right = 0.5cm and 5cm of dnsserver] {Multicast};
+		\node [block] (attacker) [right = 7cm of client] {Attacker};
+
+		\draw[-angle 90] ([xshift=-0.4cm]client.north) -- node[midway,sloped,above] {1. Who is \emph{Server1?}} ([xshift=-0.4cm]dnsserver.south) ;
+		\draw[-angle 90] ([xshift=0.4cm]dnsserver.south) -- node[midway,sloped,above] {2. Don't know} ([xshift=0.4cm]client.north) ;
+
+        \draw[-angle 90] (client.north east) -- node[midway,sloped,above] {3. Name Query Request (\emph{Server1})} (multicast) ;
+        
+		\draw[-angle 90] ([yshift=0.4cm] attacker.west) -- node[midway, sloped, above] {4. Name Query Response (\emph{Server1})} ([yshift=0.4cm] client.east);
+		\draw[-angle 90] ([yshift=-0.4cm] client.east) -- node[midway, sloped, below] {5. Communication started} ([yshift=-0.4cm] attacker.west);
+	\end{tikzpicture}
+	\caption{How an attacker spoofs the Name Resolution protocols in order to receive traffic intended for other hosts}
+	\label{fig:host-resolution-sequence-and-spoofing}
+\end{figure}
+\end{document}
