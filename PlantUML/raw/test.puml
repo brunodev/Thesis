@@ -1,0 +1,7 @@
+@startuml Test
+!include ElCazador.Worker/Interfaces/IWorkerController.puml
+!include Custom/ElCazador.Web/Worker/WebController.puml
+!include ElCazador.Worker/Worker.puml
+
+Worker "1" *-- "1" IWorkerController
+@enduml
