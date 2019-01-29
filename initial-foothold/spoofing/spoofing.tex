@@ -17,28 +17,7 @@ To understand how spoofing of \gls{llmnr} and \gls{nbns} works we first need to 
 
 This is illustrated on figure \ref{fig:host-resolution-sequence-and-spoofing} where it is also illustrated how spoofing fits into the sequence. As it is shown, the Attacker will listen to multicast packets sent on the local subnet and answer to any Name Resolution packets. If the packets sent are well-formed and conform to the standards of the protocol, the \emph{Client} will register \emph{Server1} to have the IP address of \emph{Attacker}, and thereby sending all traffic intended for \emph{Server1} to \emph{Attacker}.
 
-\begin{figure}[H]
-	\centering
-	\begin{tikzpicture}[
-			->, thick,]
-		\coordinate (O) at (0,0);
-
-		\node [block] (dnsserver) {DNS Server};
-		\node [block] (client) [below = 4cm of dnsserver] {Client};
-		\node (multicast) [below right = 1cm and 3cm of dnsserver] {Multicast};
-		\node [block] (attacker) [right = 4.5cm of client] {Attacker};
-
-		\draw[-angle 90] ([xshift=-0.4cm]client.north) -- node[midway,sloped,above] {1. Who is \emph{Server1?}} ([xshift=-0.4cm]dnsserver.south) ;
-		\draw[-angle 90] ([xshift=0.4cm]dnsserver.south) -- node[midway,sloped,above] {2. Don't know} ([xshift=0.4cm]client.north) ;
-
-        \draw[-angle 90] (client.north east) -- node[midway,sloped,above] {3. Is anyone \emph{Server1?}} (multicast) ;
-        
-		\draw[-angle 90] ([yshift=0.4cm] attacker.west) -- node[midway, sloped, above] {4. I'm \emph{Server1}} ([yshift=0.4cm] client.east);
-		\draw[-angle 90] ([yshift=-0.4cm] client.east) -- node[midway, sloped, below] {5. Communication started} ([yshift=-0.4cm] attacker.west);
-	\end{tikzpicture}
-	\caption{How an attacker spoofs the Name Resolution protocols in order to receive traffic intended for other hosts}
-	\label{fig:host-resolution-sequence-and-spoofing}
-\end{figure}
+\subimport{figures/}{spoofing-figure.tex}
 
 In Windows, two different Name Resolution protocols are used and active by default on all modern Windows versions. \gls{llmnr} and \gls{nbns} work side by side, unless specifically turned off, which is not the case by default. In section \ref{sec:llmnr} and \ref{sec:llmnr} the protocols are analyzed in detail and the attacks are described.
 \\\\
